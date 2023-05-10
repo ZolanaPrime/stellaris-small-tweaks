@@ -15,10 +15,10 @@ NB - Only available on Windows!
 
 Guarantee Spawning:
 
-Great Wound
-Ithome Cluster
-Sanctuary
-Ultima Vigilis
+- Great Wound
+- Ithome Cluster
+- Sanctuary
+- Ultima Vigilis
 
 L Cluster - choose what spawns!
 
@@ -26,40 +26,40 @@ L Cluster - choose what spawns!
 
 Guarantee Spawning:
 
-Crystalline Empire
-Horizon Signal
+- Crystalline Empire
+- Horizon Signal
 
 Misc:
 
-Guarantee relic capture after capital invasion
-End of the Cycle now has an equal chance of appearing.
+- Guarantee relic capture after capital invasion
+- End of the Cycle now has an equal chance of appearing.
 
 # Guardians:
 
 Guarantee Spawning:
 
-Automated Dreadnought
-Dimensional Horror
-Enigmatic Fortress
-Ether Drake
-Hive
-Infinity Machine
-Scavenger Bot
-Stellar Devourer
-Voidspawn
-Wraith
+- Automated Dreadnought
+- Dimensional Horror
+- Enigmatic Fortress
+- Ether Drake
+- Hive
+- Infinity Machine
+- Scavenger Bot
+- Stellar Devourer
+- Voidspawn
+- Wraith
 
 # Miscellaneous Tweaks:
 
 Federations:
-Disable subjects joining automatically on federation creation
-(NB: Hegemony/Martial Alliance remain unchanged - subjects will still join on federation creation by default.)
+- Disable subjects joining automatically on federation creation
+    - (NB: Hegemony/Martial Alliance remain unchanged - subjects will still join on federation creation by default.)
 
 # Instructions
 
-Download the mod, and run the PowerShell query.
-Follow the prompts on screen.
-Changes will only apply to new games.
+- Download the mod, and run the PowerShell query.
+- Follow the prompts on screen.
+- Changes will only apply to new games.
 Please ensure that Stellaris is not running while you run the script!
 
 # Uninstallation
@@ -77,12 +77,12 @@ If there are any events/systems/etc you'd like added to this list - again, pleas
 
 Vanilla files changed:
 
-00_federation_types.txt
-00_on_actions.txt
-ancient_relics_arcsite_events_2.txt
-central_crystal_events.txt
-distant_stars_events_3.txt
-distant_stars_initializers.txt
-leviathans_system_initializers.txt
-pre_ftl_initializers.txt
-utopia_shroud_events.txt
+- 00_federation_types.txt
+- 00_on_actions.txt
+- ancient_relics_arcsite_events_2.txt
+- central_crystal_events.txt
+- distant_stars_events_3.txt
+- distant_stars_initializers.txt
+- leviathans_system_initializers.txt
+- pre_ftl_initializers.txt
+- utopia_shroud_events.txt
