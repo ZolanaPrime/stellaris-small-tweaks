@@ -1,19 +1,19 @@
 # Stellaris Tweaks
 
-by Zolana
+*by Zolana*
 
 This is a collection of small tweaks that you can use to adjust various parameters in your Stellaris games.
 It consists of a PowerShell query - run it and just follow the prompts!
 
-NB - Only available on Windows!
+**NB - Only available on Windows!**
 
 # The mod is not yet available - currently being worked on!
 
 # Full list of available tweaks:
 
-# Systems:
+## Systems:
 
-Guarantee Spawning:
+### Guarantee Spawning:
 
 - Great Wound
 - Ithome Cluster
@@ -22,21 +22,21 @@ Guarantee Spawning:
 
 L Cluster - choose what spawns!
 
-# Events:
+## Events:
 
-Guarantee Spawning:
+### Guarantee Spawning:
 
 - Crystalline Empire
 - Horizon Signal
 
-Misc:
+### Misc:
 
 - Guarantee relic capture after capital invasion
 - End of the Cycle now has an equal chance of appearing.
 
-# Guardians:
+## Guardians:
 
-Guarantee Spawning:
+### Guarantee Spawning:
 
 - Automated Dreadnought
 - Dimensional Horror
@@ -49,9 +49,10 @@ Guarantee Spawning:
 - Voidspawn
 - Wraith
 
-# Miscellaneous Tweaks:
+## Miscellaneous Tweaks:
 
-Federations:
+### Federations:
+
 - Disable subjects joining automatically on federation creation
     - (NB: Hegemony/Martial Alliance remain unchanged - subjects will still join on federation creation by default.)
 
@@ -60,14 +61,15 @@ Federations:
 - Download the mod, and run the PowerShell query.
 - Follow the prompts on screen.
 - Changes will only apply to new games.
-Please ensure that Stellaris is not running while you run the script!
 
-# Uninstallation
+**Please ensure that Stellaris is not running while you run the script!**
+
+## Uninstallation
 
 To uninstall, either reverify files on Steam, or restore the old files by re-running the script and choosing the restore from backup option.
 
 Please note that you need the relevant DLC for each of the patches.
-This mod is NOT Achievement compatible.
+**This mod is NOT Achievement compatible.**
 
 # Bugs/Feedback
 
@@ -75,7 +77,7 @@ If you find a bug, please file an issue on GitHub - https://github.com/ZolanaPri
 
 If there are any events/systems/etc you'd like added to this list - again, please open an issue on GitHub with the details.
 
-Vanilla files changed:
+### Vanilla files changed:
 
 - 00_federation_types.txt
 - 00_on_actions.txt
