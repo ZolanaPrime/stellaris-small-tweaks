@@ -86,9 +86,9 @@ Please note that you need the relevant DLC for the respective patches that requi
 
 # Bugs/Feedback
 
-If you find a bug, please file an issue on GitHub - https://github.com/ZolanaPrime/stellaris-small-tweaks - include any error messages, system specs, Stellaris version, DLCs owned, and mods you use.
+If you find a bug, please file an issue on GitHub - https://github.com/ZolanaPrime/stellaris-small-tweaks - include any error messages, system specs, Stellaris version, DLCs owned, and mods you use; or use the forum thread *link TBA*.
 
-If there are any events/systems/etc you'd like added to this list - again, please open an issue on GitHub with the details.
+If there are any events/systems/etc you'd like added to this list - again, please open an issue on GitHub, or reply to the forum thread with the details.
 
 ### Vanilla files changed:
 
