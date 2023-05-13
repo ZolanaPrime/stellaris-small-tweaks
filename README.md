@@ -4,10 +4,11 @@
 
 This is a collection of small tweaks that you can use to adjust various parameters in your Stellaris games.
 It consists of a PowerShell query - run it and just follow the prompts!
+You will need to start a new game for the tweaks to take effect.
 
 **NB - Only available on Windows!**
 
-#The mod is not yet available - currently being worked on!
+# The mod is not yet available - currently being worked on!
 
 # Full list of available tweaks:
 
@@ -56,12 +57,13 @@ L Cluster - choose what spawns!
 - Disable subjects joining automatically on federation creation
     - (NB: Hegemony/Martial Alliance remain unchanged - subjects will still join on federation creation by default.)
 
-#To do
+# To do
 
 - War in Heaven trigger
 - Great Khan
 - Envoy cap?
-- Federation's End
+- Federation's End?
+- Grand Herald?
 
 # Instructions
 
@@ -73,9 +75,10 @@ L Cluster - choose what spawns!
 
 ## Uninstallation
 
-To uninstall, either reverify files on Steam, or restore the old files by re-running the script and choosing the restore from backup option.
+To uninstall, either reverify files on Steam, or restore the old files by re-running the script and choosing the restore from backup option (assuming you chose to backup the files initially).
 
 Please note that you need the relevant DLC for each of the patches.
+
 **This mod is NOT Achievement compatible.**
 
 # Bugs/Feedback
