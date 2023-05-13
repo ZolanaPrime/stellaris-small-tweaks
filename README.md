@@ -7,7 +7,7 @@ It consists of a PowerShell query - run it and just follow the prompts!
 
 **NB - Only available on Windows!**
 
-# The mod is not yet available - currently being worked on!
+#The mod is not yet available - currently being worked on!
 
 # Full list of available tweaks:
 
@@ -55,6 +55,13 @@ L Cluster - choose what spawns!
 
 - Disable subjects joining automatically on federation creation
     - (NB: Hegemony/Martial Alliance remain unchanged - subjects will still join on federation creation by default.)
+
+#To do
+
+- War in Heaven trigger
+- Great Khan
+- Envoy cap?
+- Federation's End
 
 # Instructions
 
