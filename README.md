@@ -31,6 +31,7 @@ You will need to start a new game for the tweaks to take effect.
 
 - Crystalline Empire
 - Horizon Signal
+- War in Heaven (can also be disabled entirely)
 
 ### Misc:
 
