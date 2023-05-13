@@ -2,13 +2,14 @@
 
 *by Zolana*
 
-This is a collection of small tweaks that you can use to adjust various parameters in your Stellaris games.
-It consists of a PowerShell query - run it and just follow the prompts!
-Pick and choose what tweaks suit your playstyle!
+- This is a collection of small tweaks that you can use to adjust various parameters in your Stellaris games.
+- It consists of a PowerShell query - run it and just follow the prompts!
+- Pick and choose what tweaks suit your playstyle!
 
 You will need to start a new game for the tweaks to take effect.
 
 **NB - Only available on Windows!**
+
 **Not compatible with Achievements, or other mods that edit the relevant sections of the vanilla files (full list below)!**
 
 # The mod is not yet available - currently being worked on!
