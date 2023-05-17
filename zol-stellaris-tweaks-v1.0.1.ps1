@@ -299,7 +299,7 @@ Write-Host "########################################"
 Write-Host "########### Creating Backup ############"
 Write-Host "########################################"
 
-if((Test-Path $mod_path\backups) -eq $false){New-Item -Path $mod_path\backups -ItemType Directory}
+if((Test-Path $mod_path\backups) -eq $false){$null = New-Item -Path $mod_path\backups -ItemType Directory}
 Write-Host "----------------------------------------"
 Write-Host ">Backup Options:"
 Write-Host "1 - Create Backup (any existing backup will be overwritten!)"
@@ -460,7 +460,6 @@ if($dlc_firstcon){
     $check = "			2 = { } # nothing"
     $check2 = "			#2 = { } # nothing"
     if(($data -eq $check) -or ($data -eq $check2)){
-    Write-Host "----------------------------------------"
     Write-Host ">First Contact Story Pack:"
     Write-Host ">Ultima Vigilis/Ithome Cluster (The Chosen)"
     Write-Host "0 - Skip"
