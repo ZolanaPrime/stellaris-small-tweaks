@@ -12,8 +12,6 @@ You will need to start a new game for the tweaks to take effect.
 
 **Not compatible with Achievements, or other mods that edit the relevant sections of the vanilla files (full list below)!**
 
-# The mod is not yet available - currently being worked on!
-
 # Full list of available tweaks:
 
 ## Systems:
@@ -37,7 +35,7 @@ You will need to start a new game for the tweaks to take effect.
 ### Misc:
 
 - Guarantee relic capture after capital invasion
-- End of the Cycle now has an equal chance of appearing.
+- End of the Cycle now has an equal chance of appearing
 - Guarantee or Disable the War in Heaven
 
 ## Guardians:
@@ -69,9 +67,9 @@ You will need to start a new game for the tweaks to take effect.
 
 # Instructions
 
-- Download the mod, and run the PowerShell query.
-- Follow the prompts on screen.
-- Changes will only apply to new games.
+- Download the mod, and run the PowerShell query;
+- Follow the prompts on screen;
+- Changes will apply to all new games;
 
 **Please ensure that Stellaris is not running while you run the script!**
 

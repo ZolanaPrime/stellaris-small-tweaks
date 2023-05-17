@@ -1,10 +1,53 @@
 ###############################################################################
 
- Version 1.0
- <Date>
+ Version 1.0.0
+ 17/05/2023
 
- Initial Release
+# Stellaris Tweaks Initial Release
 
- WIP
+- Great Wound
+- Ithome Cluster
+- Sanctuary
+- Ultima Vigilis
+- L Cluster - choose what spawns!
+
+- Crystalline Empire
+- Horizon Signal
+- Great Khan
+
+- Guarantee relic capture after capital invasion
+- End of the Cycle now has an equal chance of appearing
+- Guarantee or Disable the War in Heaven
+
+- Automated Dreadnought
+- Dimensional Horror
+- Enigmatic Fortress
+- Ether Drake
+- Hive
+- Infinity Machine
+- Scavenger Bot
+- Stellar Devourer
+- Voidspawn
+- Wraith
+
+- Adjust the base number of envoys each empire starts Wraith
+- Adjust the base number of megastructures that can be built simultaneously
+
+- Disable subjects joining automatically on federation creation
+
+### Vanilla files changed:
+
+- 00_defines.txt
+- 00_federation_types.txt
+- 00_on_actions.txt
+- ancient_relics_arcsite_events_2.txt
+- central_crystal_events.txt
+- distant_stars_events_3.txt
+- distant_stars_initializers.txt
+- fallen_empire_awakening_events.txt
+- leviathans_system_initializers.txt
+- marauder_events.txt
+- pre_ftl_initializers.txt
+- utopia_shroud_events.txt
 
  ###############################################################################
