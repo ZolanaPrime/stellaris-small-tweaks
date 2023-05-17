@@ -170,16 +170,16 @@ if ($check_ver -ne $patcher_ver){
         else{}
 
 }
-if ($check_hash -eq $patcher_ver){
+elseif ($check_ver -eq $patcher_ver){
     Write-Host ">Patcher Version:"
-    Write-Host $patcher_ver -foregroundcolor "green"
-    Write-Host ">This version is up to date!" -foregroundcolor "green"
+    Write-Host v$patcher_ver -foregroundcolor "green"
+    Write-Host ">This version is up to date!"
 }
 
 Set-Location $stel_drive
 Set-Location -Path $stel_path
 Write-Host "----------------------------------------"
-Write-Host ">Detecting installed version:"
+Write-Host ">Detecting installed Stellaris version:"
 $file = "launcher-settings.json"
 $content = Get-Content -Path $file
 $stell_ver_raw = $content[37]
