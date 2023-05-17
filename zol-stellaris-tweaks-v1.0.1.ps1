@@ -137,17 +137,21 @@ Write-Host ">Checking for Patcher updates..."
 Set-Location $env:HOMEDRIVE
 Set-Location $env:homepath
 Set-Location -Path $mod_path
-Write-Host ">Patcher Version:"
-Write-Host $patcher_ver
+
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $verurl = "https://raw.githubusercontent.com/ZolanaPrime/stellaris-small-tweaks/main/latest-ver.txt"
 $check_ver = Invoke-webrequest -URI $verurl
 $check_ver = $check_ver.ToString()
-Write-Host ">Latest Version:"
-Write-Host $check_ver
+
 
 if ($check_ver -ne $patcher_ver){
+    
+    Write-Host ">Patcher Version:"
+    Write-Host $patcher_ver -foregroundcolor "yellow"
+    Write-Host ">Latest Version:"
+    Write-Host $check_ver -foregroundcolor "green"
+    
     Write-Host ">A new version of the patcher is available to download from https://github.com/ZolanaPrime/stellaris-small-tweaks" -foregroundcolor "cyan"
         
     Write-Host "1 - Continue"
@@ -167,6 +171,8 @@ if ($check_ver -ne $patcher_ver){
 
 }
 if ($check_hash -eq $patcher_ver){
+    Write-Host ">Patcher Version:"
+    Write-Host $patcher_ver -foregroundcolor "green"
     Write-Host ">This version is up to date!" -foregroundcolor "green"
 }
 
@@ -343,7 +349,7 @@ if($backup_create -eq 1){
     Write-Host ">Backed up 00_defines.txt"    
 
     Copy-Item -Path $stel_path\events\marauder_events.txt -Destination $mod_path\backups
-    Write-Host ">Backed up 00_defines.txt"
+    Write-Host ">Backed up marauder_events.txt"
 
 }
 
