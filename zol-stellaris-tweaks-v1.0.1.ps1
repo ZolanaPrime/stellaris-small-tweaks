@@ -103,7 +103,7 @@ Write-Host ">Verifying Patcher..."
 Set-Location $env:HOMEDRIVE
 Set-Location $env:homepath
 Set-Location -Path $mod_path
-$mod_hash = Get-FileHash "zol-stellaris-tweaks-v$ver.ps1" -Algorithm SHA256
+$mod_hash = Get-FileHash "zol-stellaris-tweaks-v$patcher_ver.ps1" -Algorithm SHA256
 Write-Host ">Script Hash:"
 Write-Host $mod_hash.hash
 
