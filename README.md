@@ -32,12 +32,13 @@ You will need to start a new game for the tweaks to take effect.
 
 - Crystalline Empire
 - Horizon Signal
-- War in Heaven (can also be disabled entirely)
+- Great Khan
 
 ### Misc:
 
 - Guarantee relic capture after capital invasion
 - End of the Cycle now has an equal chance of appearing.
+- Guarantee or Disable the War in Heaven
 
 ## Guardians:
 
@@ -101,5 +102,6 @@ If there are any events/systems/etc you'd like added to this list - again, pleas
 - distant_stars_initializers.txt
 - fallen_empire_awakening_events.txt
 - leviathans_system_initializers.txt
+- marauder_events.txt
 - pre_ftl_initializers.txt
 - utopia_shroud_events.txt
