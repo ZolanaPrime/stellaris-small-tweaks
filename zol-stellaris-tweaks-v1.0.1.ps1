@@ -1,7 +1,7 @@
 Write-Host "########################################"
 Write-Host "###### Zolana's Stellaris Tweaks #######"
-Write-Host "############ Version 1.0.0 #############"
-$patcher_ver = "1.0.0"
+Write-Host "############ Version 1.0.1 #############"
+$patcher_ver = "1.0.1"
 Write-Host "########################################"
 Write-Host "######## Patcher for Stellaris: ########"
 Write-Host "########### v3.8.2 (Gemini) ############"
@@ -88,7 +88,7 @@ if($mod_path_check){
     }
 Write-Host $mod_path
 
-$mod_path_check = Test-Path -path "$mod_path\zol-stellaris-tweaks-v$ver.ps1"
+$mod_path_check = Test-Path -path "$mod_path\zol-stellaris-tweaks-v$patcher_ver.ps1"
 if($mod_path_check -eq $false){
     Write-Host "Could not detect this script in selected directory. Please check you selected the correct directory. Exiting!" -foregroundcolor "red"
     Pause
@@ -108,7 +108,7 @@ Write-Host ">Script Hash:"
 Write-Host $mod_hash.hash
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-$hashurl = "http://raw.githubusercontent.com/ZolanaPrime/stellaris-small-tweaks/main/sha256-v$ver.txt"
+$hashurl = "http://raw.githubusercontent.com/ZolanaPrime/stellaris-small-tweaks/main/sha256-v$patcher_ver.txt"
 $check_hash = Invoke-webrequest -URI $hashurl
 $check_hash = $check_hash.ToString()
 Write-Host ">Expected Hash:"
@@ -1519,13 +1519,10 @@ else{
     Write-Host "Invalid Input, skipped" -foregroundcolor "yellow"
 }
 
-
-
-
-
 Write-Host "----------------------------------------"
 Write-Host "########################################"
 Write-Host "### Patching L-Cluster Spawning Odds ###"
+Write-Host "----------------------------------------"
 Write-Host ">Distant Stars Story Pack:"
 if($dlc_diststars){
 $file = "events\distant_stars_events_3.txt"
