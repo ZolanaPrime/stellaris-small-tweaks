@@ -752,6 +752,61 @@ else {
     Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
 }
 
+Write-Host "----------------------------------------"
+Write-Host ">Megacorp Expansion:"
+
+if($dlc_megacorp){
+
+# TBC $file = ".txt"
+    $content = Get-Content -Path $file
+    
+    # TBC $search="Galatron"
+    $line  = Get-Content $file | 
+       Select-String $search | 
+       Select-Object -First 1 | 
+       Select-Object -ExpandProperty LineNumber
+    
+    # TBC $data = $content[$line+33]
+    # TBC $check = "		years = 100"
+    # TBC $check2 = "		days = 1"
+    
+        if(($data -eq $check) -or ($data -eq $check2)){
+
+            Write-Host ">Galatron Spawn Chances"
+            Write-Host "0 - Skip"
+            Write-Host "1 - Guarantee Spawn"
+            Write-Host "2 - Vanilla Odds"
+            $choice = Read-Host "Please select an option"
+            if($choice -eq 1){
+            # TBC $content[$line+33] = '		days = 1' 
+            $content | Set-Content -Path $file
+            Write-Host "Guaranteed Spawn: The Galatron"
+            }
+            elseif($choice -eq 2){
+            # TBC $content[$line+33] = "		years = 100"
+
+            $content | Set-Content -Path $file
+            Write-Host "Vanilla Spawn Odds: The Galatron"
+            }
+            else{
+                Write-Host "Skipped" -foregroundcolor "yellow"
+            }
+        }
+else {
+    Write-Host "Guarantee Galatron Spawn - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+    }
+}
+
+
+
+
+
+
+}
+
+else {
+    Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
+}
 
 Write-Host "----------------------------------------"
 Write-Host ">Leviathans Story Pack:"
@@ -853,6 +908,47 @@ else{
 else {
 Write-Host "Guaranteed Relic Capture - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
 }
+
+# Grand Herald
+
+#$file = "events\ancient_relics_arcsite_events_2.txt"
+$content = Get-Content -Path $file
+
+#$search="Grand Herald"
+$line  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+#$data = $content[$line+30]
+#$check = "			100 = {}"
+#$check2 = "#			100 = {}"
+if(($data -eq $check) -or ($data -eq $check2)){
+Write-Host ">Grand Herald Dig Site"
+Write-Host "0 - Skip"
+Write-Host "1 - Guarantee Spawn"
+Write-Host "2 - Vanilla Spawn Rate"
+$choice = Read-Host "Please select an option"
+if($choice -eq 1){
+#$content[$line+30] = '#			100 = {}'
+$content | Set-Content -Path $file
+Write-Host "Guaranteed Spawn: Grand Herald Dig Site"
+}
+elseif($choice -eq 2){
+#$content[$line+30] = '			100 = {}'
+
+$content | Set-Content -Path $file
+Write-Host "Vanilla Spawn Rate: Grand Herald Dig Site"
+}
+else{
+    Write-Host "Skipped" -foregroundcolor "yellow"
+}
+}
+else {
+Write-Host "Guaranteed Spawn: Grand Herald Dig Site - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+}
+
+
 
 }
 else {
