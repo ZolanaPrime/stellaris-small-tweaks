@@ -35,6 +35,7 @@ You will need to start a new game for the tweaks to take effect.
 ### Misc:
 
 - Guarantee relic capture after capital invasion
+- Guarantee Galatron from Caravaneer loot crates
 - End of the Cycle now has an equal chance of appearing
 - Guarantee or Disable the War in Heaven
 
@@ -95,6 +96,7 @@ If there are any events/systems/etc you'd like added to this list - again, pleas
 - 00_federation_types.txt
 - 00_on_actions.txt
 - ancient_relics_arcsite_events_2.txt
+- caravaneer_events.txt
 - central_crystal_events.txt
 - distant_stars_events_3.txt
 - distant_stars_initializers.txt

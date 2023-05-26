@@ -3,8 +3,7 @@
 Version 1.1.0
  XX/05/2023
 
- - Added Grand Herald Spawning to tweaks
- - Added Galatron spawn odds to tweaks
+  - Added Galatron guarantee spawn odds to tweaks
   
 ###############################################################################
 

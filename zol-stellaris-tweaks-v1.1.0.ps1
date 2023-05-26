@@ -351,6 +351,9 @@ if($backup_create -eq 1){
     Copy-Item -Path $stel_path\events\marauder_events.txt -Destination $mod_path\backups
     Write-Host ">Backed up marauder_events.txt"
 
+    Copy-Item -Path $stel_path\events\caravaneer_events.txt -Destination $mod_path\backups
+    Write-Host ">Backed up caravaneer_events.txt"
+
 }
 
 elseif($backup_create -eq 2){
@@ -757,33 +760,33 @@ Write-Host ">Megacorp Expansion:"
 
 if($dlc_megacorp){
 
-# TBC $file = ".txt"
+$file = "caravaneer_events.txt"
     $content = Get-Content -Path $file
     
-    # TBC $search="Galatron"
+    $search="			# Galatron"
     $line  = Get-Content $file | 
        Select-String $search | 
        Select-Object -First 1 | 
        Select-Object -ExpandProperty LineNumber
     
-    # TBC $data = $content[$line+33]
-    # TBC $check = "		years = 100"
-    # TBC $check2 = "		days = 1"
+    $data = $content[$line]
+    $check = "			1 = {"
+    $check2 = "			1000000000 = {"
     
         if(($data -eq $check) -or ($data -eq $check2)){
 
-            Write-Host ">Galatron Spawn Chances"
+            Write-Host ">Galatron Spawn Chances (in Caravaneer Loot Boxes)"
             Write-Host "0 - Skip"
             Write-Host "1 - Guarantee Spawn"
             Write-Host "2 - Vanilla Odds"
             $choice = Read-Host "Please select an option"
             if($choice -eq 1){
-            # TBC $content[$line+33] = '		days = 1' 
+            $content[$line] = '			1000000000 = {' 
             $content | Set-Content -Path $file
             Write-Host "Guaranteed Spawn: The Galatron"
             }
             elseif($choice -eq 2){
-            # TBC $content[$line+33] = "		years = 100"
+            $content[$line] = "			1 = {"
 
             $content | Set-Content -Path $file
             Write-Host "Vanilla Spawn Odds: The Galatron"
@@ -796,10 +799,6 @@ else {
     Write-Host "Guarantee Galatron Spawn - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
     }
 }
-
-
-
-
 
 
 }
@@ -908,47 +907,6 @@ else{
 else {
 Write-Host "Guaranteed Relic Capture - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
 }
-
-# Grand Herald
-
-#$file = "events\ancient_relics_arcsite_events_2.txt"
-$content = Get-Content -Path $file
-
-#$search="Grand Herald"
-$line  = Get-Content $file | 
-   Select-String $search | 
-   Select-Object -First 1 | 
-   Select-Object -ExpandProperty LineNumber
-
-#$data = $content[$line+30]
-#$check = "			100 = {}"
-#$check2 = "#			100 = {}"
-if(($data -eq $check) -or ($data -eq $check2)){
-Write-Host ">Grand Herald Dig Site"
-Write-Host "0 - Skip"
-Write-Host "1 - Guarantee Spawn"
-Write-Host "2 - Vanilla Spawn Rate"
-$choice = Read-Host "Please select an option"
-if($choice -eq 1){
-#$content[$line+30] = '#			100 = {}'
-$content | Set-Content -Path $file
-Write-Host "Guaranteed Spawn: Grand Herald Dig Site"
-}
-elseif($choice -eq 2){
-#$content[$line+30] = '			100 = {}'
-
-$content | Set-Content -Path $file
-Write-Host "Vanilla Spawn Rate: Grand Herald Dig Site"
-}
-else{
-    Write-Host "Skipped" -foregroundcolor "yellow"
-}
-}
-else {
-Write-Host "Guaranteed Spawn: Grand Herald Dig Site - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
-}
-
-
 
 }
 else {
@@ -1792,7 +1750,12 @@ elseif($mode -eq 2){
     if(test-path $mod_path\backups\marauder_events.txt){
     Copy-Item -Path $mod_path\backups\marauder_events.txt -Destination $stel_path\events
     Write-Host ">Restored marauder_events.txt" -foregroundcolor "green"}
-    else {Write-Host ">Unable to restore marauder_events.txt - backup not found!" -foregroundcolor "red"}        
+    else {Write-Host ">Unable to restore marauder_events.txt - backup not found!" -foregroundcolor "red"}    
+
+    if(test-path $mod_path\backups\caravaneer_events.txt){
+    Copy-Item -Path $mod_path\backups\caravaneer_events.txt -Destination $stel_path\events
+    Write-Host ">Restored caravaneer_events.txt" -foregroundcolor "green"}
+    else {Write-Host ">Unable to restore caravaneer_events.txt - backup not found!" -foregroundcolor "red"}        
     
     Write-Host "Restoration complete!"
     pause
