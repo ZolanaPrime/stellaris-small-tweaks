@@ -801,7 +801,7 @@ else {
 }
 
 
-}
+
 
 else {
     Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
