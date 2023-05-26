@@ -1,7 +1,8 @@
+
 Write-Host "########################################"
 Write-Host "###### Zolana's Stellaris Tweaks #######"
-Write-Host "############ Version 1.0.1 #############"
-$patcher_ver = "1.0.1"
+Write-Host "############ Version 1.1.0 #############"
+$patcher_ver = "1.1.0"
 Write-Host "########################################"
 Write-Host "######## Patcher for Stellaris: ########"
 Write-Host "########### v3.8.2 (Gemini) ############"
@@ -63,7 +64,8 @@ Write-Host $stel_path
 
 Set-Location $env:HOMEDRIVE
 Set-Location $env:homepath
-$mod_path_check = Test-Path "documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks"
+$mod_path_check = Test-Path "documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\zol-stellaris-tweaks-v$patcher_ver.ps1" -PathType Leaf
+
 
 if($mod_path_check){
     Write-Host ">Mod directory detected" -foregroundcolor "green"
@@ -89,6 +91,7 @@ if($mod_path_check){
 Write-Host $mod_path
 
 $mod_path_check = Test-Path -path "$mod_path\zol-stellaris-tweaks-v$patcher_ver.ps1"
+
 if($mod_path_check -eq $false){
     Write-Host "Could not detect this script in selected directory. Please check you selected the correct directory. Exiting!" -foregroundcolor "red"
     Pause
@@ -350,6 +353,9 @@ if($backup_create -eq 1){
 
     Copy-Item -Path $stel_path\events\marauder_events.txt -Destination $mod_path\backups
     Write-Host ">Backed up marauder_events.txt"
+
+    Copy-Item -Path $stel_path\events\caravaneer_events.txt -Destination $mod_path\backups
+    Write-Host ">Backed up caravaneer_events.txt"
 
 }
 
@@ -752,6 +758,57 @@ else {
     Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
 }
 
+Write-Host "----------------------------------------"
+Write-Host ">Megacorp Expansion:"
+
+if($dlc_megacorp){
+
+$file = "events\caravaneer_events.txt"
+    $content = Get-Content -Path $file
+    
+    $search="			# Galatron"
+    $line  = Get-Content $file | 
+       Select-String $search | 
+       Select-Object -First 1 | 
+       Select-Object -ExpandProperty LineNumber
+    
+    $data = $content[$line]
+    $check = "			1 = {"
+    $check2 = "			1000000000 = {"
+    
+        if(($data -eq $check) -or ($data -eq $check2)){
+
+            Write-Host ">Galatron Spawn Chances (in Caravaneer Loot Boxes)"
+            Write-Host "0 - Skip"
+            Write-Host "1 - Guarantee Spawn"
+            Write-Host "2 - Vanilla Odds"
+            $choice = Read-Host "Please select an option"
+            if($choice -eq 1){
+            $content[$line] = '			1000000000 = {' 
+            $content | Set-Content -Path $file
+            Write-Host "Guaranteed Spawn: The Galatron"
+            }
+            elseif($choice -eq 2){
+            $content[$line] = "			1 = {"
+
+            $content | Set-Content -Path $file
+            Write-Host "Vanilla Spawn Odds: The Galatron"
+            }
+            else{
+                Write-Host "Skipped" -foregroundcolor "yellow"
+            }
+        }
+else {
+    Write-Host "Guarantee Galatron Spawn - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+    }
+}
+
+
+
+
+else {
+    Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
+}
 
 Write-Host "----------------------------------------"
 Write-Host ">Leviathans Story Pack:"
@@ -1696,7 +1753,12 @@ elseif($mode -eq 2){
     if(test-path $mod_path\backups\marauder_events.txt){
     Copy-Item -Path $mod_path\backups\marauder_events.txt -Destination $stel_path\events
     Write-Host ">Restored marauder_events.txt" -foregroundcolor "green"}
-    else {Write-Host ">Unable to restore marauder_events.txt - backup not found!" -foregroundcolor "red"}        
+    else {Write-Host ">Unable to restore marauder_events.txt - backup not found!" -foregroundcolor "red"}    
+
+    if(test-path $mod_path\backups\caravaneer_events.txt){
+    Copy-Item -Path $mod_path\backups\caravaneer_events.txt -Destination $stel_path\events
+    Write-Host ">Restored caravaneer_events.txt" -foregroundcolor "green"}
+    else {Write-Host ">Unable to restore caravaneer_events.txt - backup not found!" -foregroundcolor "red"}        
     
     Write-Host "Restoration complete!"
     pause
