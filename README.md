@@ -8,6 +8,8 @@
 
 You will need to start a new game for the tweaks to take effect.
 
+You will need to re-run the script whenever the game is updated, or to make changes to your selections!
+
 **NB - Only available on Windows!**
 
 **Not compatible with Achievements, or other mods that edit the relevant sections of the vanilla files (full list below)!**

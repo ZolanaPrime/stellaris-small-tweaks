@@ -63,7 +63,8 @@ Write-Host $stel_path
 
 Set-Location $env:HOMEDRIVE
 Set-Location $env:homepath
-$mod_path_check = Test-Path "documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks"
+$mod_path_check = Test-Path "documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\zol-stellaris-tweaks-v$patcher_ver.ps1" -PathType Leaf
+
 
 if($mod_path_check){
     Write-Host ">Mod directory detected" -foregroundcolor "green"
@@ -89,6 +90,7 @@ if($mod_path_check){
 Write-Host $mod_path
 
 $mod_path_check = Test-Path -path "$mod_path\zol-stellaris-tweaks-v$patcher_ver.ps1"
+
 if($mod_path_check -eq $false){
     Write-Host "Could not detect this script in selected directory. Please check you selected the correct directory. Exiting!" -foregroundcolor "red"
     Pause
@@ -760,7 +762,7 @@ Write-Host ">Megacorp Expansion:"
 
 if($dlc_megacorp){
 
-$file = "caravaneer_events.txt"
+$file = "events\caravaneer_events.txt"
     $content = Get-Content -Path $file
     
     $search="			# Galatron"
