@@ -2,6 +2,8 @@
 
 *by Zolana*
 
+# Latest file - zol-stellaris-tweaks-v1.1.1.ps1 - for Stellaris v3.8.3 (Gemini)
+
 - This is a collection of small tweaks that you can use to adjust various parameters in your Stellaris games.
 - It consists of a PowerShell query - run it and just follow the prompts!
 - Pick and choose what tweaks suit your playstyle!

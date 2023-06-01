@@ -1,7 +1,7 @@
 
 Write-Host "########################################"
 Write-Host "###### Zolana's Stellaris Tweaks #######"
-Write-Host "############ Version 1.1.0 #############"
+Write-Host "############ Version 1.1.1 #############"
 $patcher_ver = "1.1.1"
 Write-Host "########################################"
 Write-Host "######## Patcher for Stellaris: ########"
