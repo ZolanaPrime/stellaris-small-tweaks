@@ -1586,7 +1586,7 @@ else{
 
 Write-Host "----------------------------------------"
 Write-Host ">Utopia Expansion:"
-if(dlc_utopia){
+if($dlc_utopia){
 
 $file = "common\technology\00_eng_tech.txt"
 $content = Get-Content -Path $file
