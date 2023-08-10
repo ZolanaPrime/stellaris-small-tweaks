@@ -16,6 +16,10 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
 **Not compatible with Achievements, or other mods that edit the relevant sections of the vanilla files (full list below)!**
 
+# v1.2.0 New Features:
+
+- Disable AI researching habitats
+
 # Full list of available tweaks:
 
 ## Systems:
