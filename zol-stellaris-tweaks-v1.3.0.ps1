@@ -1,7 +1,7 @@
 
 Write-Host "########################################"
 Write-Host "###### Zolana's Stellaris Tweaks #######"
-Write-Host "############ Version 1.2.0 #############"
+Write-Host "############ Version 1.3.0 #############"
 $patcher_ver = "1.3.0"
 Write-Host "########################################"
 Write-Host "######## Patcher for Stellaris: ########"
@@ -24,8 +24,8 @@ Write-Host "----------------------------------------"
 # Update these to default installation paths
 
 if($platform -eq 1){
-    $stel_path = "D:\Steam Favourites\SteamApps\common\Stellaris"
-    #$stel_path = "C:\Program Files (x86)\Steam\SteamApps\common\Stellaris"
+    #$stel_path = "D:\Steam Favourites\SteamApps\common\Stellaris"
+    $stel_path = "C:\Program Files (x86)\Steam\SteamApps\common\Stellaris"
     $stel_path_check = Test-Path $stel_path
 }
 elseif($platform -eq 2){
@@ -1646,7 +1646,7 @@ $line  = Get-Content $file |
    Select-Object -ExpandProperty LineNumber
 
 $data = $content[$line+10]
-$data2 = $content[$line+25]
+$data2 = $content[$line+29]
 $check = "			random_list = {"
 $check2 = "}"
 if((($data -eq $check) -or ($data -eq $check2)) -and ($data2 -eq $check2)){
@@ -1667,54 +1667,54 @@ if ($choice -eq 0){Write-Host "Skipping!" -foregroundcolor "yellow"}
 elseif ($choice -eq 1){
 
     $content[$line+11] = '				1 = {' # Grey Tempest
-    $content[$line+15] = '				0 = {}'# Grey
-    $content[$line+16] = '				0 = {' # Drakes
-    $content[$line+19] = '				0 = {' # Dessanu Consonance
+    $content[$line+19] = '				0 = {}'# Grey
+    $content[$line+20] = '				0 = {' # Drakes
+    $content[$line+23] = '				0 = {' # Dessanu Consonance
     $content | Set-Content -Path $file
     Write-Host "Guarantee L-Cluster Result: Grey Tempest"
 }
 elseif ($choice -eq 2){
 
     $content[$line+11] = '				0 = {' # Grey Tempest
-    $content[$line+15] = '				0 = {}'# Grey
-    $content[$line+16] = '				1 = {' # Drakes
-    $content[$line+19] = '				0 = {' # Dessanu Consonance
+    $content[$line+19] = '				0 = {}'# Grey
+    $content[$line+20] = '				1 = {' # Drakes
+    $content[$line+23] = '				0 = {' # Dessanu Consonance
     $content | Set-Content -Path $file
     Write-Host "Guarantee L-Cluster Result: L-Drakes"
 }
 elseif ($choice -eq 3){
 
     $content[$line+11] = '				0 = {' # Grey Tempest
-    $content[$line+15] = '				0 = {}'# Grey
-    $content[$line+16] = '				0 = {' # Drakes
-    $content[$line+19] = '				1 = {' # Dessanu Consonance
+    $content[$line+19] = '				0 = {}'# Grey
+    $content[$line+20] = '				0 = {' # Drakes
+    $content[$line+23] = '				1 = {' # Dessanu Consonance
     $content | Set-Content -Path $file
     Write-Host "Guarantee L-Cluster Result: Dessanu Consonance"
 }
 elseif ($choice -eq 4){
 
     $content[$line+11] = '				0 = {' # Grey Tempest
-    $content[$line+15] = '				1 = {}'# Grey
-    $content[$line+16] = '				0 = {' # Drakes
-    $content[$line+19] = '				0 = {' # Dessanu Consonance
+    $content[$line+19] = '				1 = {}'# Grey
+    $content[$line+20] = '				0 = {' # Drakes
+    $content[$line+23] = '				0 = {' # Dessanu Consonance
     $content | Set-Content -Path $file
     Write-Host "Guarantee L-Cluster Result: Empty/Grey"
 }
 elseif ($choice -eq 5){
 
     $content[$line+11] = '				0 = {' # Grey Tempest
-    $content[$line+15] = '				1 = {}'# Grey
-    $content[$line+16] = '				1 = {' # Drakes
-    $content[$line+19] = '				1 = {' # Dessanu Consonance
+    $content[$line+19] = '				1 = {}'# Grey
+    $content[$line+20] = '				1 = {' # Drakes
+    $content[$line+23] = '				1 = {' # Dessanu Consonance
     $content | Set-Content -Path $file
     Write-Host "Guarantee L-Cluster Result: Anything EXCEPT Grey Tempest"
 }
 elseif ($choice -eq 6){
 
     $content[$line+11] = '				50 = {' # Grey Tempest
-    $content[$line+15] = '				30 = {}'# Grey
-    $content[$line+16] = '				30 = {' # Drakes
-    $content[$line+19] = '				30 = {' # Dessanu Consonance
+    $content[$line+19] = '				30 = {}'# Grey
+    $content[$line+20] = '				30 = {' # Drakes
+    $content[$line+23] = '				30 = {' # Dessanu Consonance
     $content | Set-Content -Path $file
     Write-Host "Guarantee L-Cluster Result: Vanilla odds"
 }

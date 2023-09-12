@@ -2,9 +2,7 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.2.0.ps1 - for Stellaris v3.8.4 (Gemini)
-
-** v1.3.0 is in development and will be released shortly after v3.9.1 (Caelum) is released **
+# Latest file - zol-stellaris-tweaks-v1.3.0.ps1 - for Stellaris v3.9.1 (Caelum)
 
 - This is a collection of small tweaks that you can use to adjust various parameters in your Stellaris games.
 - It consists of a PowerShell query - run it and just follow the prompts!
@@ -20,7 +18,7 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
 # v1.3.0 New Features:
 
-- TBC
+- Updated for compatibility with Stellaris v3.9.1 (Caelum)
 
 # Full list of available tweaks:
 
