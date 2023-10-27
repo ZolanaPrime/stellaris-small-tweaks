@@ -2,7 +2,7 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.3.1.ps1 - for Stellaris v3.9.1 (Caelum)
+# Latest file - zol-stellaris-tweaks-v1.3.1.ps1 - for Stellaris v3.9.3 (Caelum)
 
 - This is a collection of small tweaks that you can use to adjust various parameters in your Stellaris games.
 - It consists of a PowerShell query - run it and just follow the prompts!
