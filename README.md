@@ -19,7 +19,7 @@ You will need to re-run the script whenever the game is updated, or to make chan
 # v1.3.1 New Features:
 
 - Updated for compatibility with Stellaris v3.9.3 (Caelum)
-- Non Hegemony Federations now default to not allowing subject members.  
+- In vanilla, non-Hegemony Federations now default to not allowing subject members.  
 - The tweaks for these are still available, but the default behaviour text has been amended to reflect this change.
 
 # Full list of available tweaks:
