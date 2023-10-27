@@ -1,5 +1,14 @@
 ###############################################################################
 
+Version 1.3.1
+ XX/XX/2023
+
+  - Updated for compatibility with Stellaris v3.9.3 (Caelum)
+  - Non Hegemony Federations now default to not allowing subject members.  
+  - The tweaks for these are still available, but the default behaviour text has been amended to reflect this change.
+
+###############################################################################
+
 Version 1.3.0
  12/09/2023
 
