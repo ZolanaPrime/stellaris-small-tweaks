@@ -1,12 +1,11 @@
-
 Write-Host "########################################"
 Write-Host "###### Zolana's Stellaris Tweaks #######"
-Write-Host "############ Version 1.3.1 #############"
-$patcher_ver = "1.3.1"
+Write-Host "############ Version 1.4.0 #############"
+$patcher_ver = "1.4.0"
 Write-Host "########################################"
 Write-Host "######## Patcher for Stellaris: ########"
-Write-Host "########### v3.9.3 (Caelum) ############"
-$ver = "3.9.3"
+Write-Host "########### v3.10.0 (Pyxis) ############"
+$ver = "3.10.0"
 Write-Host "########################################"
 Write-Host "########## Environment Setup ###########"
 Write-Host "----------------------------------------"
@@ -20,8 +19,6 @@ Write-Host "3 - Other"
 Write-Host "----------------------------------------"
 $platform = Read-Host "Please select your platform"
 Write-Host "----------------------------------------"
-
-# Update these to default installation paths
 
 if($platform -eq 1){
     #$stel_path = "D:\Steam Favourites\SteamApps\common\Stellaris"
@@ -66,7 +63,6 @@ Set-Location $env:HOMEDRIVE
 Set-Location $env:homepath
 $mod_path_check = Test-Path "documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\zol-stellaris-tweaks-v$patcher_ver.ps1" -PathType Leaf
 
-
 if($mod_path_check){
     Write-Host ">Mod directory detected" -foregroundcolor "green"
     $mod_path = "documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks" }
@@ -98,7 +94,6 @@ if($mod_path_check -eq $false){
     Exit
 }
 
-
 Write-Host "########################################"
 Write-Host "####### Installation Verification ######"
 Write-Host "----------------------------------------"
@@ -129,7 +124,6 @@ if ($check_hash -ne $mod_hash.hash){
             Exit
             }
 
-
 }
 if ($check_hash -eq $mod_hash.hash){
     Write-Host ">Mod hash verified!" -foregroundcolor "green"
@@ -141,12 +135,10 @@ Set-Location $env:HOMEDRIVE
 Set-Location $env:homepath
 Set-Location -Path $mod_path
 
-
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $verurl = "https://raw.githubusercontent.com/ZolanaPrime/stellaris-small-tweaks/main/latest-ver.txt"
 $check_ver = Invoke-webrequest -URI $verurl
 $check_ver = $check_ver.ToString()
-
 
 if ($check_ver -ne $patcher_ver){
     
@@ -155,7 +147,7 @@ if ($check_ver -ne $patcher_ver){
     Write-Host ">Latest Version:"
     Write-Host $check_ver -foregroundcolor "green"
     
-    Write-Host ">A new version of the patcher is available to download from https://github.com/ZolanaPrime/stellaris-small-tweaks" -foregroundcolor "cyan"
+    Write-Host ">The latest version of the patcher is available to download from https://github.com/ZolanaPrime/stellaris-small-tweaks" -foregroundcolor "cyan"
         
     Write-Host "1 - Continue"
     Write-Host "2 - Exit"
@@ -167,7 +159,7 @@ if ($check_ver -ne $patcher_ver){
             Exit
             }
         elseif ($choice -eq 3){
-            Start-Process "https://github.com/ZolanaPrime/stellaris-small-tweaks/releases"
+            Start-Process "https://github.com/ZolanaPrime/stellaris-small-tweaks"
             Exit
             }
         else{}
@@ -286,6 +278,10 @@ $dlc_galpar = Test-Path "dlc\dlc030_paragon\dlc030.dlc"
 if($dlc_galpar){Write-Host ">Detected Galactic Paragons Expansion" -foregroundcolor "green"}
 else {Write-Host ">Galactic Paragons Expansion Not Detected" -foregroundcolor "red"}
 
+$dlc_astplan = Test-Path "dlc\dlc031_astralplanes\dlc031.dlc"
+if($dlc_astplan){Write-Host ">Detected Astral Planes Narrative Pack" -foregroundcolor "green"}
+else {Write-Host ">Astral Planes Narrative Pack Not Detected" -foregroundcolor "red"}
+
 Write-Host "----------------------------------------"
 
 # Select install mode, or restore backup
@@ -359,6 +355,21 @@ if($backup_create -eq 1){
     
     Copy-Item -Path $stel_path\common\technology\00_eng_tech.txt -Destination $mod_path\backups
     Write-Host ">Backed up 00_eng_tech.txt"
+        
+    Copy-Item -Path $stel_path\events\precursor_events.txt -Destination $mod_path\backups
+    Write-Host ">Backed up precursor_events.txt"
+    
+    Copy-Item -Path $stel_path\events\ancient_relics_arcsite_events_1.txt -Destination $mod_path\backups
+    Write-Host ">Backed up ancient_relics_arcsite_events_1.txt"
+        
+    Copy-Item -Path $stel_path\common\diplomatic_actions\00_actions.txt -Destination $mod_path\backups
+    Write-Host ">Backed up 00_actions.txt"   
+
+    Copy-Item -Path $stel_path\common\solar_system_initializers\unique_system_initializers.txt -Destination $mod_path\backups
+    Write-Host ">Backed up unique_system_initializers.txt"
+
+    Copy-Item -Path $stel_path\common\solar_system_initializers\paragon_initializers.txt -Destination $mod_path\backups
+    Write-Host ">Backed up paragon_initializers.txt"
 
 }
 
@@ -377,7 +388,6 @@ Write-Host "----------------------------------------"
 Write-Host "########################################"
 Write-Host "############ Begin Updates  ############"
 Write-Host "########################################"
-
 Write-Host "########### Patching Systems ###########"
 Write-Host "----------------------------------------"
 Write-Host ">Base Game:"
@@ -416,9 +426,52 @@ else{
 }
 
 else {
-Write-Host "Guaranteed Spawn: Sanctuary - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Sanctuary - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 Write-Host "----------------------------------------"
+
+# Larionessi Refuge
+
+$file = "common\solar_system_initializers\unique_system_initializers.txt"
+$content = Get-Content $file
+$search="# Larionessi Refuge - Neutron Star with a Relic planet and arc site"
+$line  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$data = $content[$line+19]
+$check = "	spawn_chance = @unique_system_spawn_chance"
+$check2 = "	scaled_spawn_chance = 9999999"
+
+if(($data -eq $check) -or ($data -eq $check2)){
+Write-Host ">Larionessi Refuge Unique System"
+Write-Host "0 - Skip"
+Write-Host "1 - Guarantee Spawn"
+Write-Host "2 - Vanilla Spawn Rate"
+$choice = Read-Host "Please select an option"
+if($choice -eq 1){
+$content[$line+8] = '		base = 100'
+$content[$line+19] = '	scaled_spawn_chance = 9999999'
+$content | Set-Content -Path $file
+Write-Host "Guaranteed Spawn: Larionessi Refuge"
+}
+elseif($choice -eq 2){
+$content[$line+8] = '		base = 1'
+$content[$line+19] = '	spawn_chance = @unique_system_spawn_chance'
+$content | Set-Content -Path $file
+Write-Host "Vanilla Spawn Rate: Larionessi Refuge"
+}
+else{
+    Write-Host "Skipped" -foregroundcolor "yellow"
+}
+}
+
+else {
+Write-Host "Guaranteed Spawn: Larionessi Refuge - Unable to locate parameter, skipping" -foregroundcolor "yellow"
+}
+Write-Host "----------------------------------------"
+
 # Ultima Vigilis (in Base Game)
 # (only if no First Contact, otherwise do it further on along with Ithome Cluster - as events are linked - vanilla behaviour = neither or one only)
 
@@ -457,7 +510,7 @@ else{
 }
 
 else {
-Write-Host "Guaranteed Spawn: Ultima Vigilis - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Ultima Vigilis - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 }
 else{}
@@ -525,7 +578,7 @@ if($dlc_firstcon){
 
 }
 else {
-    Write-Host "Guaranteed Spawn: Ultima Vigilis/Ithome Cluster - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+    Write-Host "Guaranteed Spawn: Ultima Vigilis/Ithome Cluster - Unable to locate parameter, skipping" -foregroundcolor "yellow"
     }
 }
 
@@ -567,7 +620,53 @@ else{
 }
 
 else {
-Write-Host "Guaranteed Spawn: Great Wound - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Great Wound - Unable to locate parameter, skipping" -foregroundcolor "yellow"
+}
+
+}
+else {
+    Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
+}
+
+Write-Host "----------------------------------------"
+Write-Host ">Galactic Paragons Expansion:"
+if($dlc_galpar){
+# Dugar
+
+$file = "common\solar_system_initializers\paragon_initializers.txt"
+$content = Get-Content $file
+$search="#Spawn Planet and System"
+$line  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$data = $content[$line+4]
+$check = "	spawn_chance = 25"
+$check2 = "	spawn_chance = 25"
+if(($data -eq $check) -or ($data -eq $check2)){
+Write-Host ">Dugar Unique System"
+Write-Host "0 - Skip"
+Write-Host "1 - Guarantee Spawn"
+Write-Host "2 - Vanilla Spawn Rate"
+$choice = Read-Host "Please select an option"
+if($choice -eq 1){
+$content[$line+4] = '	scaled_spawn_chance = 9999999'
+$content | Set-Content -Path $file
+Write-Host "Guaranteed Spawn: Dugar"
+}
+elseif($choice -eq 2){
+$content[$line+4] = '	spawn_chance = 25'
+$content | Set-Content -Path $file
+Write-Host "Vanilla Spawn Rate: Dugar"
+}
+else{
+    Write-Host "Skipped" -foregroundcolor "yellow"
+}
+}
+
+else {
+Write-Host "Guaranteed Spawn: Dugar - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 }
@@ -619,7 +718,7 @@ else{
 }
 
 else {
-Write-Host "Guaranteed Event Trigger: Crystalline Empire Spawn - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Event Trigger: Crystalline Empire Spawn - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -660,15 +759,13 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Event Trigger: Horizon Signal - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Event Trigger: Horizon Signal - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 }
 
 else{
      Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
 }
-
-
 
 Write-Host "----------------------------------------"
 Write-Host ">Utopia Expansion:"
@@ -707,7 +804,7 @@ else{
 }
 }
 else {
-Write-Host "End of the Cycle appearance odds - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "End of the Cycle appearance odds - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 }
 else {
@@ -754,7 +851,7 @@ $file = "events\marauder_events.txt"
             }
         }
 else {
-    Write-Host "Guarantee Great Khan - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+    Write-Host "Guarantee Great Khan - Unable to locate parameter, skipping" -foregroundcolor "yellow"
     }
 }
 else {
@@ -802,12 +899,9 @@ $file = "events\caravaneer_events.txt"
             }
         }
 else {
-    Write-Host "Guarantee Galatron Spawn - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+    Write-Host "Guarantee Galatron Spawn - Unable to locate parameter, skipping" -foregroundcolor "yellow"
     }
 }
-
-
-
 
 else {
     Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
@@ -835,7 +929,7 @@ if($dlc_lev){
             Write-Host ">War in Heaven (requires at least 2 Awakened Fallen Empires)?"
             Write-Host "0 - Skip"
             Write-Host "1 - Always"
-            Write-Host "2 - Never (Vanilla)"
+            Write-Host "2 - Never"
             Write-Host "3 - Vanilla Behaviour"
             $choice = Read-Host "Please select an option"
             if($choice -eq 1){
@@ -866,7 +960,7 @@ if($dlc_lev){
 
 }
 else {
-    Write-Host "Guarantee War in Heaven - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+    Write-Host "Guarantee War in Heaven - Unable to locate parameter, skipping" -foregroundcolor "yellow"
     }
 }
 else {
@@ -911,7 +1005,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Relic Capture - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Relic Capture - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 }
@@ -962,7 +1056,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Spawn: Stellar Devourer - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Stellar Devourer - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -998,7 +1092,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Spawn: Ether Drake - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Ether Drake - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1034,7 +1128,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Spawn: Dimensional Horror - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Dimensional Horror - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1070,7 +1164,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Spawn: Automated Dreadnought - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Automated Dreadnought - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1106,7 +1200,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Spawn: Hive - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Hive - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1142,7 +1236,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Spawn: Infinity Machine - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Infinity Machine - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1178,7 +1272,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Spawn: Enigmatic Fortress - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Enigmatic Fortress - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1214,7 +1308,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Spawn: Spectral Wraith - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Spectral Wraith - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 
@@ -1222,8 +1316,6 @@ Write-Host "Guaranteed Spawn: Spectral Wraith - Unable to locate parameter. File
 else {
     Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
 }
-
-
 
 Write-Host "----------------------------------------"
 Write-Host ">Distant Stars Story Pack:"
@@ -1263,7 +1355,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Spawn: Voidspawn - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Voidspawn - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1299,7 +1391,7 @@ else{
 }
 }
 else {
-Write-Host "Guaranteed Spawn: Scavenger Bot - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Guaranteed Spawn: Scavenger Bot - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 }
@@ -1307,11 +1399,49 @@ else {
     Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
 }
 
-
-
 Write-Host "----------------------------------------"
 Write-Host "########################################"
 Write-Host "##### Patching Federation Defaults #####"
+Write-Host "----------------------------------------"
+Write-Host ">Base Game:"
+
+$file = "common\diplomatic_actions\00_actions.txt"
+$content = Get-Content -Path $file
+$search="				fail_text = requires_tradition_the_federation"
+$line  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$data = $content[$line+0]
+$check = "				has_tradition = tr_diplomacy_the_federation"
+$check2 = "#				has_tradition = tr_diplomacy_the_federation"
+
+if(($data -eq $check) -or ($data -eq $check2)){
+
+Write-Host ">Disable diplomacy tradition requirement to form a federation?"
+Write-Host "0 - Skip"
+Write-Host "1 - Disable requirement"
+Write-Host "2 - Enable requirement (Vanilla)"
+$choice = Read-Host "Please select an option"
+if($choice -eq 1){
+$content[$line+0] = '#				has_tradition = tr_diplomacy_the_federation'
+$content | Set-Content -Path $file
+Write-Host "Disabled requirement to have diplomacy tradition to form a federation"
+}
+elseif($choice -eq 2){
+$content[$line+0] = "				has_tradition = tr_diplomacy_the_federation"
+$content | Set-Content -Path $file
+Write-Host "Enabled requirement to have diplomacy tradition to form a federation"
+}
+else{
+    Write-Host "Skipped" -foregroundcolor "yellow"
+}
+}
+else {
+Write-Host "Remove diplomacy tradition requirement to form a Federation - Unable to locate parameter, skipping" -foregroundcolor "yellow"
+}
+
 Write-Host "----------------------------------------"
 Write-Host ">Base Game:"
 $file = "common\federation_types\00_federation_types.txt"
@@ -1347,10 +1477,8 @@ else{
 }
 }
 else {
-Write-Host "Galactic Union, disable subjects joining by default - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Galactic Union, disable subjects joining by default - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
-
-
 
 Write-Host "----------------------------------------"
 Write-Host ">Federations Expansion:"
@@ -1387,7 +1515,7 @@ else{
 }
 }
 else {
-Write-Host "Trade League, disable subjects joining by default - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Trade League, disable subjects joining by default - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1423,7 +1551,7 @@ else{
 }
 }
 else {
-Write-Host "Research Cooperative, disable subjects joining by default - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Research Cooperative, disable subjects joining by default - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1459,7 +1587,7 @@ else{
 }
 }
 else {
-Write-Host "Holy Covenant, disable subjects joining by default - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Holy Covenant, disable subjects joining by default - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1495,7 +1623,7 @@ else{
 }
 }
 else {
-Write-Host "Martial Alliance, disable subjects joining by default - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Martial Alliance, disable subjects joining by default - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 Write-Host "----------------------------------------"
@@ -1531,7 +1659,7 @@ else{
 }
 }
 else {
-Write-Host "Hegemony, disable subjects joining by default - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Hegemony, disable subjects joining by default - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
 }
@@ -1621,7 +1749,7 @@ else{
 }
 }
 else {
-Write-Host "Allow AI to research Habitats - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "Allow AI to research Habitats - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 }
 else {
@@ -1721,11 +1849,400 @@ elseif ($choice -eq 6){
 else {write-host "Invalid option selected, skipping!"-foregroundcolor "yellow"}
 }
 else {
-Write-Host "L-Cluster Result - Unable to locate parameter. File may be edited by other mods, skipping" -foregroundcolor "yellow"
+Write-Host "L-Cluster Result - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 }
 else {
     Write-Host "DLC not detected, skipping." -foregroundcolor "yellow"
+}
+
+Write-Host "----------------------------------------"
+Write-Host "########################################"
+Write-Host "########## Patching Precursors #########"
+Write-Host "----------------------------------------"
+if($dlc_ancrel){
+$file = "events\precursor_events.txt"
+$file2 = "events\ancient_relics_arcsite_events_1.txt"
+$content = Get-Content -Path $file
+$content2 = Get-Content -Path $file2
+
+# File checks
+
+$search="# Vultaum Introduction"
+$line  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search2="# Yuht Intro"
+$line2  = Get-Content $file | 
+   Select-String $search2 | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search3="# First League Notification Event"
+$line3  = Get-Content $file | 
+   Select-String $search3 | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search4="# Irassian Notification Event"
+$line4  = Get-Content $file | 
+   Select-String $search4 | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search5="# Cybrex Notification Event"
+$line5  = Get-Content $file | 
+   Select-String $search5 | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search6="# Zroni Introduction"
+$line6  = Get-Content $file2 | 
+   Select-String $search6 | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search7="# Baol Introduction"
+$line7  = Get-Content $file2 | 
+   Select-String $search7 | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$data = $content[$line+22]
+$data2 = $content[$line2+22]
+$data3 = $content[$line3+22]
+$data4 = $content[$line4+22]
+$data5 = $content[$line5+22]
+
+$data6 = $content2[$line6+29]
+$data7= $content2[$line7+37]
+
+$check = "		factor = 1"
+$check2 = "		factor = 0"
+
+if (($data -eq $check) -or ($data -eq $check2)) {$chkflag = 0} else {$chkflag = 1}
+if (($data2 -eq $check) -or ($data2 -eq $check2)) {$chkflag2 = 0} else {$chkflag2 = 1}
+if (($data3 -eq $check) -or ($data3 -eq $check2)) {$chkflag3 = 0} else {$chkflag3 = 1}
+if (($data4 -eq $check) -or ($data4 -eq $check2)) {$chkflag4 = 0} else {$chkflag4 = 1}
+if (($data5 -eq $check) -or ($data5 -eq $check2)) {$chkflag5 = 0} else {$chkflag5 = 1}
+if (($data6 -eq $check) -or ($data6 -eq $check2)) {$chkflag6 = 0} else {$chkflag6 = 1}
+if (($data7 -eq $check) -or ($data7 -eq $check2)) {$chkflag7 = 0} else {$chkflag7 = 1}
+
+$checksum = $chkflag + $chkflag2 + $chkflag3 + $chkflag4 + $chkflag5 + $chkflag6 + $chkflag7
+
+if ($checksum -eq 0){
+
+Write-Host ">Select Precursor"
+Write-Host ">Options:"
+Write-Host "0 - Skip"
+Write-Host "1 - Cybrex"
+Write-Host "2 - First League"
+Write-Host "3 - Irassian Concordat"
+Write-Host "4 - Vultaum Star Assembly"
+Write-Host "5 - Yuht Empire"
+Write-Host "6 - Baol"
+Write-Host "7 - Zroni"
+Write-Host "8 - Vanilla odds"
+Write-Host "9 - Disable Precursors"
+
+$choice = Read-Host "Please select an option"
+
+if ($choice -eq 0){Write-Host "Skipping!" -foregroundcolor "yellow"}
+elseif ($choice -eq 1){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 1' # Cybrex
+    $content | Set-Content -Path $file
+
+    $content2[$line6+29] = '		factor = 0' # Zroni
+    $content2[$line7+37] = '		factor = 0' # Baol
+    $content2 | Set-Content -Path $file2
+
+    Write-Host "Set Precursor: Cybrex"
+}
+elseif ($choice -eq 2){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 1' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    
+    $content2[$line6+29] = '		factor = 0' # Zroni
+    $content2[$line7+37] = '		factor = 0' # Baol
+    $content2 | Set-Content -Path $file2
+
+    Write-Host "Set Precursor: First League"
+}
+elseif ($choice -eq 3){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 1' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    
+    $content2[$line6+29] = '		factor = 0' # Zroni
+    $content2[$line7+37] = '		factor = 0' # Baol
+    $content2 | Set-Content -Path $file2
+
+    Write-Host "Set Precursor: Irassian Concordat"
+}
+elseif ($choice -eq 4){
+
+    $content[$line+22] = '		factor = 1' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    
+    $content2[$line6+29] = '		factor = 0' # Zroni
+    $content2[$line7+37] = '		factor = 0' # Baol
+    $content2 | Set-Content -Path $file2
+
+    Write-Host "Set Precursor: Vultaum Star Assembly"
+}
+elseif ($choice -eq 5){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 1' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    
+    $content2[$line6+29] = '		factor = 0' # Zroni
+    $content2[$line7+37] = '		factor = 0' # Baol
+    $content2 | Set-Content -Path $file2
+
+    Write-Host "Set Precursor: Yuht Empire"
+}
+elseif ($choice -eq 6){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    
+    $content2[$line6+29] = '		factor = 0' # Zroni
+    $content2[$line7+37] = '		factor = 1' # Baol
+    $content2 | Set-Content -Path $file2
+
+    Write-Host "Set Precursor: Baol"
+}
+elseif ($choice -eq 7){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    
+    $content2[$line6+29] = '		factor = 1' # Zroni
+    $content2[$line7+37] = '		factor = 0' # Baol
+    $content2 | Set-Content -Path $file2
+
+    Write-Host "Set Precursor: Zroni"
+}
+elseif ($choice -eq 8){
+
+    $content[$line+22] = '		factor = 1' # Vultaum
+    $content[$line2+22] = '		factor = 1' # Yuht
+    $content[$line3+22] = '		factor = 1' # First League
+    $content[$line4+22] = '		factor = 1' # Irassians
+    $content[$line5+22] = '		factor = 1' # Cybrex
+    $content | Set-Content -Path $file
+    
+    $content2[$line6+29] = '		factor = 1' # Zroni
+    $content2[$line7+37] = '		factor = 1' # Baol
+    $content2 | Set-Content -Path $file2
+
+    Write-Host "Set Vanilla Precursor Spawning"
+}
+elseif ($choice -eq 9){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    
+    $content2[$line6+29] = '		factor = 0' # Zroni
+    $content2[$line7+37] = '		factor = 0' # Baol
+    $content2 | Set-Content -Path $file2
+
+    Write-Host "Disabled Precursor Spawning"
+}
+
+else {write-host "Invalid option selected, skipping!"-foregroundcolor "yellow"}
+}
+
+else {
+Write-Host "Set Precursors - Unable to locate parameter, skipping" -foregroundcolor "yellow"
+}
+}
+else {
+
+$file = "events\precursor_events.txt"
+$content = Get-Content -Path $file
+
+# File checks
+
+$search="# Vultaum Introduction"
+$line  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search2="# Yuht Intro"
+$line2  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search3="# First League Notification Event"
+$line3  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search4="# Irassian Notification Event"
+$line4  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search5="# Cybrex Notification Event"
+$line5  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$data = $content[$line+22]
+$data2 = $content[$line2+22]
+$data3 = $content[$line3+22]
+$data4 = $content[$line4+22]
+$data5 = $content[$line5+22]
+$check = "		factor = 1"
+$check2 = "		factor = 0"
+
+if (($data -eq $check) -or ($data -eq $check2)) {$chkflag = 0} else {$chkflag = 1}
+if (($data2 -eq $check) -or ($data2 -eq $check2)) {$chkflag2 = 0} else {$chkflag2 = 1}
+if (($data3 -eq $check) -or ($data3 -eq $check2)) {$chkflag3 = 0} else {$chkflag3 = 1}
+if (($data4 -eq $check) -or ($data4 -eq $check2)) {$chkflag4 = 0} else {$chkflag4 = 1}
+if (($data5 -eq $check) -or ($data5 -eq $check2)) {$chkflag5 = 0} else {$chkflag5 = 1}
+
+$checksum = $chkflag + $chkflag2 + $chkflag3 + $chkflag4 + $chkflag5
+
+if ($checksum -eq 0){
+
+Write-Host ">Select Precursor"
+Write-Host ">Options:"
+Write-Host "0 - Skip"
+Write-Host "1 - Cybrex"
+Write-Host "2 - First League"
+Write-Host "3 - Irassian Concordat"
+Write-Host "4 - Vultaum Star Assembly"
+Write-Host "5 - Yuht Empire"
+Write-Host "6 - Vanilla odds"
+Write-Host "7 - Disable Precursors"
+#Write-Host "6 - Baol"
+#Write-Host "7 - Zroni"
+#Write-Host "8 - Vanilla odds"
+#Write-Host "9 - Disable Precursors"
+
+$choice = Read-Host "Please select an option"
+
+if ($choice -eq 0){Write-Host "Skipping!" -foregroundcolor "yellow"}
+elseif ($choice -eq 1){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 1' # Cybrex
+    $content | Set-Content -Path $file
+    Write-Host "Set Precursor: Cybrex"
+}
+elseif ($choice -eq 2){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 1' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    Write-Host "Set Precursor: First League"
+}
+elseif ($choice -eq 3){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 1' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    Write-Host "Set Precursor: Irassian Concordat"
+}
+elseif ($choice -eq 4){
+
+    $content[$line+22] = '		factor = 1' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    Write-Host "Set Precursor: Vultaum Star Assembly"
+}
+elseif ($choice -eq 5){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 1' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    Write-Host "Set Precursor: Yuht Empire"
+}
+elseif ($choice -eq 6){
+
+    $content[$line+22] = '		factor = 1' # Vultaum
+    $content[$line2+22] = '		factor = 1' # Yuht
+    $content[$line3+22] = '		factor = 1' # First League
+    $content[$line4+22] = '		factor = 1' # Irassians
+    $content[$line5+22] = '		factor = 1' # Cybrex
+    $content | Set-Content -Path $file
+    Write-Host "Set Vanilla Precursor Spawning"
+}
+elseif ($choice -eq 7){
+
+    $content[$line+22] = '		factor = 0' # Vultaum
+    $content[$line2+22] = '		factor = 0' # Yuht
+    $content[$line3+22] = '		factor = 0' # First League
+    $content[$line4+22] = '		factor = 0' # Irassians
+    $content[$line5+22] = '		factor = 0' # Cybrex
+    $content | Set-Content -Path $file
+    Write-Host "Disabled Precursor Spawning"
+}
+
+else {write-host "Invalid option selected, skipping!"-foregroundcolor "yellow"
+}
+}
+else {
+Write-Host "Set Precursors - Unable to locate parameter, skipping" -foregroundcolor "yellow"
+}
 }
 
 Write-Host "----------------------------------------"
@@ -1736,7 +2253,6 @@ Write-Host "########################################"
 pause
 exit
 }
-
 
 # Restore Backups
 
@@ -1811,6 +2327,31 @@ elseif($mode -eq 2){
     Copy-Item -Path $mod_path\backups\00_eng_tech.txt -Destination $stel_path\common\technology
     Write-Host ">Restored caravaneer_events.txt" -foregroundcolor "green"}
     else {Write-Host ">Unable to restore caravaneer_events.txt - backup not found!" -foregroundcolor "red"}   
+
+    if(test-path $mod_path\backups\precursor_events.txt){
+    Copy-Item -Path $mod_path\backups\precursor_events.txt -Destination $stel_path\events
+    Write-Host ">Restored precursor_events.txt" -foregroundcolor "green"}
+    else {Write-Host ">Unable to restore precursor_events.txt - backup not found!" -foregroundcolor "red"}  
+
+    if(test-path $mod_path\backups\ancient_relics_arcsite_events_1.txt){
+    Copy-Item -Path $mod_path\backups\ancient_relics_arcsite_events_1.txt -Destination $stel_path\events
+    Write-Host ">Restored ancient_relics_arcsite_events_1.txt" -foregroundcolor "green"}
+    else {Write-Host ">Unable to restore ancient_relics_arcsite_events_1.txt - backup not found!" -foregroundcolor "red"}
+
+    if(test-path $mod_path\backups\00_actions.txt){
+    Copy-Item -Path $mod_path\00_actions.txt -Destination $stel_path\common\diplomatic_actions
+    Write-Host ">Restored 00_actions.txt" -foregroundcolor "green"}
+    else {Write-Host ">Unable to restore 00_actions.txt - backup not found!" -foregroundcolor "red"}
+
+    if(test-path $mod_path\backups\unique_system_initializers.txt){
+    Copy-Item -Path $mod_path\backups\unique_system_initializers.txt -Destination $stel_path\common\solar_system_initializers
+    Write-Host ">Restored unique_system_initializers.txt" -foregroundcolor "green"}
+    else {Write-Host ">Unable to restore unique_system_initializers.txt - backup not found!" -foregroundcolor "red"}
+
+    if(test-path $mod_path\backups\paragon_initializers.txt){
+    Copy-Item -Path $mod_path\backups\paragon_initializers.txt -Destination $stel_path\common\solar_system_initializers
+    Write-Host ">Restored paragon_initializers.txt" -foregroundcolor "green"}
+    else {Write-Host ">Unable to restore paragon_initializers.txt - backup not found!" -foregroundcolor "red"}
 
     Write-Host "Restoration complete!"
     pause
