@@ -18,9 +18,10 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
 # v1.4.0 New Features:
 
-  - Updated for compatibility with Stellaris v3.10.0 (Pyxis)
+  - Updated for compatibility with Stellaris v3.10.0 (Pyxis) - TBC (waiting for release)
   - Added option to pick which Precursor spawns (or disable Precursors entirely)
   - Added option to remove diplomacy tradition being a requirement to form a federation
+  - Added option to significantly reduce influence cost of espionage operations - TODO
 
 # Full list of available tweaks:
 
