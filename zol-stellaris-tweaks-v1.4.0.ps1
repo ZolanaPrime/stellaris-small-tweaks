@@ -539,36 +539,37 @@ if($dlc_firstcon){
 
     if($choice -eq 1){
         $content[$line+8] = '			#2 = { } # nothing'
-        $content[$line+14] = '#			1 = {'
-        $content[$line+21] = '#				}'
+        $content[$line+9] = '			1 = {'
+        $content[$line+13] = '				}'
+        $content[$line+14] = '			0 = {'
+        $content[$line+30] = '		    }'
         $content | Set-Content -Path $file
         Write-Host "Guaranteed Spawn: Ultima Vigilis"
     }
     elseif($choice -eq 2){
         $content[$line+8] = '			#2 = { } # nothing'
-        $content[$line+9] = '#			1 = {'
-        $content[$line+13] = '#				}'
+        $content[$line+9] = '			0 = {'
+        $content[$line+13] = '			}'
+        $content[$line+14] = '			1 = {'
+        $content[$line+30] = '		    }'
         $content | Set-Content -Path $file
         Write-Host "Guaranteed Spawn: Ithome Cluster (The Chosen)"
     }
     elseif($choice -eq 3){
         $content[$line+8] = '			#2 = { } # nothing'
         $content[$line+9] = '			1 = {'
-        $content[$line+13] = '				}}'
-        $content[$line+14] = '			random_list = {1 = {'
-        $content[$line+21] = '				}'
-        $content[$line+23] = '		}'
+        $content[$line+13] = '				}}
+        $content[$line+14] = '			random_list = {1 = {
+        $content[$line+30] = '		    }}'
         $content | Set-Content -Path $file
         Write-Host "Guaranteed Spawn: Ultima Vigilis and Ithome Cluster (The Chosen)"
     }
     elseif($choice -eq 4){
-        $content[$line+7] = '		random_list = {'
         $content[$line+8] = '			2 = { } # nothing'
         $content[$line+9] = '			1 = {'
-        $content[$line+13] = '				}'
+        $content[$line+13] = '			}'
         $content[$line+14] = '			1 = {'
-        $content[$line+21] = '				}'
-        $content[$line+23] = '		}'
+        $content[$line+30] = '		    }'
         $content | Set-Content -Path $file
         Write-Host "Vanilla Spawn Rate: Ultima Vigilis and Ithome Cluster (The Chosen)"
     }
@@ -643,7 +644,7 @@ $line  = Get-Content $file |
 
 $data = $content[$line+4]
 $check = "	spawn_chance = 25"
-$check2 = "	spawn_chance = 25"
+$check2 = "	scaled_spawn_chance = 9999999"
 if(($data -eq $check) -or ($data -eq $check2)){
 Write-Host ">Dugar Unique System"
 Write-Host "0 - Skip"
@@ -1414,8 +1415,9 @@ $line  = Get-Content $file |
    Select-Object -ExpandProperty LineNumber
 
 $data = $content[$line+0]
+
 $check = "				has_tradition = tr_diplomacy_the_federation"
-$check2 = "#				has_tradition = tr_diplomacy_the_federation"
+$check2 = "				#has_tradition = tr_diplomacy_the_federation"
 
 if(($data -eq $check) -or ($data -eq $check2)){
 
@@ -1425,7 +1427,7 @@ Write-Host "1 - Disable requirement"
 Write-Host "2 - Enable requirement (Vanilla)"
 $choice = Read-Host "Please select an option"
 if($choice -eq 1){
-$content[$line+0] = '#				has_tradition = tr_diplomacy_the_federation'
+$content[$line+0] = '				#has_tradition = tr_diplomacy_the_federation'
 $content | Set-Content -Path $file
 Write-Host "Disabled requirement to have diplomacy tradition to form a federation"
 }
@@ -1725,9 +1727,9 @@ $line  = Get-Content $file |
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
-$data = $content[$line+63]
-$check = "	ai_weight = {"
-$check2 = "	ai_weight = { weight = 0"
+$data = $content[$line+65]
+$check = "			factor = 100"
+$check2 = "			factor = 0"
 if(($data -eq $check) -or ($data -eq $check2)){
     Write-Host ">Allow AI to research Habitats?"
     Write-Host "0 - Skip"
@@ -1735,14 +1737,24 @@ if(($data -eq $check) -or ($data -eq $check2)){
     Write-Host "2 - Allow (Vanilla)"
 $choice = Read-Host "Please select an option"
 if($choice -eq 1){
-$content[$line+63] = '	ai_weight = { weight = 0'
+$content[$line+65] = '			factor = 0'
+$content[$line+66] = '#			OR = {'
+$content[$line+67] = '#				has_origin = origin_toxic_knights'
+$content[$line+68] = '#				has_country_flag = payback_habitat'
+$content[$line+69] = '#				has_valid_civic = civic_void_hive'
+$content[$line+70] = '#			}'
 $content | Set-Content -Path $file
-Write-Host ""
+Write-Host "Disabled Habitats for AI Empires"
 }
 elseif($choice -eq 2){
-$content[$line+63] = "	ai_weight = {"
+$content[$line+65] = '			factor = 100'
+$content[$line+66] = '			OR = {'
+$content[$line+67] = '				has_origin = origin_toxic_knights'
+$content[$line+68] = '				has_country_flag = payback_habitat'
+$content[$line+69] = '				has_valid_civic = civic_void_hive'
+$content[$line+70] = '			}'
 $content | Set-Content -Path $file
-Write-Host ""
+Write-Host "Enabled Habitats for AI Empires"
 }
 else{
     Write-Host "Skipped" -foregroundcolor "yellow"

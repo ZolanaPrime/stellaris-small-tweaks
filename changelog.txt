@@ -8,6 +8,8 @@ Version 1.4.0
   - Added option to remove diplomacy tradition being a requirement to form a federation
   - Added Dugar system guarantee spawn option
   - Added Larionessi Refuge system guarantee spawn option
+  - Bugfix where Ultima Vigilis/Ithome Cluster tweak wasn't working properly
+  - Bugfix where disable AI habitats tweak wasn't working properly
 
 
 ###############################################################################
