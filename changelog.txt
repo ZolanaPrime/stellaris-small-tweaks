@@ -1,7 +1,7 @@
 ###############################################################################
 
 Version 1.4.0
- 27/10/2023
+ XX/11/2023
 
   - Updated for compatibility with Stellaris v3.10.0 (Pyxis)
   - Added option to pick which Precursor spawns (or disable Precursors entirely)
@@ -9,8 +9,7 @@ Version 1.4.0
   - Added Dugar system guarantee spawn option
   - Added Larionessi Refuge system guarantee spawn option
   - Bugfix where Ultima Vigilis/Ithome Cluster tweak wasn't working properly
-  - Bugfix where disable AI habitats tweak wasn't working properly
-
+  - Bugfix where disable AI researching habitats tweak wasn't working properly
 
 ###############################################################################
 

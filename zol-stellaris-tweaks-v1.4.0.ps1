@@ -371,6 +371,12 @@ if($backup_create -eq 1){
     Copy-Item -Path $stel_path\common\solar_system_initializers\paragon_initializers.txt -Destination $mod_path\backups
     Write-Host ">Backed up paragon_initializers.txt"
 
+    Copy-Item -Path $stel_path\common\espionage_operation_types\operations.txt -Destination $mod_path\backups
+    Write-Host ">Backed up operations.txt"
+
+    Copy-Item -Path $stel_path\common\espionage_operation_types\pre_ftl_operations.txt -Destination $mod_path\backups
+    Write-Host ">Backed up pre_ftl_operations.txt"
+
 }
 
 elseif($backup_create -eq 2){
@@ -2257,6 +2263,245 @@ Write-Host "Set Precursors - Unable to locate parameter, skipping" -foregroundco
 }
 }
 
+
+Write-Host "########################################"
+Write-Host "########## Patching Espionage ##########"
+Write-Host "----------------------------------------"
+
+$file = "common\espionage_operation_types\operations.txt"
+$content = Get-Content -Path $file
+
+$search="operation_gather_information = {" # base game operation
+$line  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search2="operation_consume_star = {" # base game operation
+$line2  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search3="operation_kaleidoscope = {" # base game operation
+$line3  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$data = $content[$line+16]
+$data2 = $content[$line2+11]
+$data3 = $content[$line3+8]
+
+$check1a = '			influence = 20'
+$check1b = '			influence = 2'
+$check2a = '			influence = 250'
+$check2b = '			influence = 25'
+$check3a = '			influence = 20'
+$check3b = '			influence = 2'
+
+if (($data -eq $check1a) -or ($data -eq $check1b)) {$chkflag = 0} else {$chkflag = 1}
+if (($data2 -eq $check2a) -or ($data2 -eq $check2b)) {$chkflag2 = 0} else {$chkflag2 = 1}
+if (($data3 -eq $check3a) -or ($data3 -eq $check3b)) {$chkflag3 = 0} else {$chkflag3 = 1}
+
+$checksum = $chkflag + $chkflag2 + $chkflag3
+
+if ($checksum -eq 0){
+    Write-Host ">Base Game:"
+    Write-Host ">Influence Cost of Espionage Operations (Base Game)"
+    Write-Host ">Options:"
+    Write-Host "0 - Skip"
+    Write-Host "1 - Vanilla Costs"
+    Write-Host "2 - Reduced Costs (~90% reduction)"
+    $choice = Read-Host "Please select an option"
+if ($choice -eq 0){Write-Host "Skipping!" -foregroundcolor "yellow"}
+elseif ($choice -eq 1){
+$content[$line+16] = '			influence = 20'
+$content[$line2+11] = '			influence = 250'
+$content[$line3+8] = '			influence = 20'
+$content | Set-Content -Path $file
+    Write-Host "Set Vanilla Espionage Operation Costs (Base Game)"
+}
+elseif ($choice -eq 2){
+$content[$line+16] = '			influence = 2'
+$content[$line2+11] = '			influence = 25'
+$content[$line3+8] = '			influence = 2'
+$content | Set-Content -Path $file
+    Write-Host "Reduced Espionage Operation Costs (Base Game)"
+}
+else {write-host "Invalid option selected, skipping!"-foregroundcolor "yellow"
+}
+}
+else {
+Write-Host "Set Espionage Influence Costs - Unable to locate parameter, skipping" -foregroundcolor "yellow"
+}
+
+
+############################################################################################
+if($dlc_nem){
+  
+$file = "common\espionage_operation_types\operations.txt"
+$content = Get-Content -Path $file
+
+$search="operation_diplomatic_incident = {"
+$line  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search2="operation_sleeper_cells = {"
+$line2  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search3="operation_acquire_asset = {"
+$line3  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search4="operation_extort_favors = {"
+$line4  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search5="operation_smear_campaign = {"
+$line5  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search6="operation_steal_technology = {"
+$line6  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search7="operation_sabotage_starbase = {"
+$line7  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search8="operation_arm_privateers = {"
+$line8  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search9="operation_crisis_beacon = {"
+$line9  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search10="operation_weaken_galactic_empire = {"
+$line10  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search11="operation_target_seditionists = {"
+$line11  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+$search12="operation_spark_rebellion = {"
+$line12  = Get-Content $file | 
+   Select-String $search | 
+   Select-Object -First 1 | 
+   Select-Object -ExpandProperty LineNumber
+
+
+$data = $content[$line+9]
+$data2 = $content[$line2+11]
+$data3 = $content[$line3+9]
+$data4 = $content[$line4+9]
+$data5 = $content[$line5+9]
+$data6 = $content[$line6+9]
+$data7 = $content[$line7+15]
+$data8 = $content[$line8+9]
+$data9 = $content[$line9+9]
+$data10 = $content[$line10+9]
+$data11 = $content[$line11+9]
+$data12 = $content[$line12+9]
+
+$check1a = '			influence = 30'
+$check1b = '			influence = 3'
+$check2a = '			influence = 45'
+$check2b = '			influence = 4'
+$check3a = '			influence = 45'
+$check3b = '			influence = 4'
+$check4a = '			influence = 60'
+$check4b = '			influence = 6'
+$check5a = '			influence = 60'
+$check5b = '			influence = 6'
+$check6a = '			influence = 80'
+$check6b = '			influence = 8'
+$check7a = '			influence = 100'
+$check7b = '			influence = 10'
+$check8a = '			influence = 180'
+$check8b = '			influence = 18'
+$check9a = '			influence = 320'
+$check9b = '			influence = 32'
+$check10a = '			influence = 60'
+$check10b = '			influence = 6'
+$check11a = '			influence = 60'
+$check11b = '			influence = 6'
+$check12a = '			influence = 250'
+$check12b = '			influence = 25'
+
+if (($data -eq $check1a) -or ($data -eq $check1b)) {$chkflag = 0} else {$chkflag = 1}
+if (($data -eq $check2a) -or ($data -eq $check2b)) {$chkflag2 = 0} else {$chkflag2 = 1}
+if (($data -eq $check3a) -or ($data -eq $check3b)) {$chkflag3 = 0} else {$chkflag3 = 1}
+if (($data -eq $check4a) -or ($data -eq $check4b)) {$chkflag4 = 0} else {$chkflag4 = 1}
+if (($data -eq $check5a) -or ($data -eq $check5b)) {$chkflag5 = 0} else {$chkflag5 = 1}
+if (($data -eq $check6a) -or ($data -eq $check6b)) {$chkflag6 = 0} else {$chkflag6 = 1}
+if (($data -eq $check7a) -or ($data -eq $check7b)) {$chkflag7 = 0} else {$chkflag7 = 1}
+if (($data -eq $check8a) -or ($data -eq $check8b)) {$chkflag8 = 0} else {$chkflag8 = 1}
+if (($data -eq $check9a) -or ($data -eq $check9b)) {$chkflag9 = 0} else {$chkflag9 = 1}
+if (($data -eq $check10a) -or ($data -eq $check10b)) {$chkflag10 = 0} else {$chkflag10 = 1}
+if (($data -eq $check11a) -or ($data -eq $check11b)) {$chkflag11 = 0} else {$chkflag11 = 1}
+if (($data -eq $check12a) -or ($data -eq $check12b)) {$chkflag12 = 0} else {$chkflag12 = 1}
+
+$checksum = $chkflag + $chkflag2 + $chkflag3 + $chkflag4 + $chkflag5 + $chkflag6 + $chkflag7 + $chkflag8 + $chkflag9 + $chkflag10 + $chkflag11 + $chkflag12
+
+if ($checksum -eq 0){
+    Write-Host ">Base Game:"
+    Write-Host ">Influence Cost of Espionage Operations (Nemesis Expansion Pack)"
+    Write-Host ">Options:"
+    Write-Host "0 - Skip"
+    Write-Host "1 - Vanilla Costs"
+    Write-Host "2 - Reduced Costs (~90% reduction)"
+    $choice = Read-Host "Please select an option"
+if ($choice -eq 0){Write-Host "Skipping!" -foregroundcolor "yellow"}
+elseif ($choice -eq 1){
+
+
+}
+elseif ($choice -eq 2){
+
+
+}
+else {write-host "Invalid option selected, skipping!"-foregroundcolor "yellow"
+}
+}
+else {
+Write-Host "Set Espionage Influence Costs - Unable to locate parameter, skipping" -foregroundcolor "yellow"
+}
+}
+
+
+############################################################################################
+
+if(dlc_firstcon){
+    $file = "common\espionage_operation_types\pre_ftl_operations.txt"
+$content = Get-Content -Path $file
+}
+
 Write-Host "----------------------------------------"
 Write-Host "########################################"
 Write-Host "########## Updates Complete! ###########"
@@ -2364,6 +2609,16 @@ elseif($mode -eq 2){
     Copy-Item -Path $mod_path\backups\paragon_initializers.txt -Destination $stel_path\common\solar_system_initializers
     Write-Host ">Restored paragon_initializers.txt" -foregroundcolor "green"}
     else {Write-Host ">Unable to restore paragon_initializers.txt - backup not found!" -foregroundcolor "red"}
+
+    if(test-path $mod_path\backups\operations.txt){
+    Copy-Item -Path $mod_path\backups\operations.txt -Destination $stel_path\common\espionage_operation_types
+    Write-Host ">Restored operations.txt" -foregroundcolor "green"}
+    else {Write-Host ">Unable to restore operations.txt - backup not found!" -foregroundcolor "red"}
+
+    if(test-path $mod_path\backups\pre_ftl_operations.txt){
+    Copy-Item -Path $mod_path\backups\pre_ftl_operations.txt -Destination $stel_path\common\espionage_operation_types
+    Write-Host ">Restored pre_ftl_operations.txt" -foregroundcolor "green"}
+    else {Write-Host ">Unable to restore pre_ftl_operations.txt - backup not found!" -foregroundcolor "red"}
 
     Write-Host "Restoration complete!"
     pause

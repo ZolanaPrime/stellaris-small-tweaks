@@ -21,9 +21,9 @@ You will need to re-run the script whenever the game is updated, or to make chan
   - Updated for compatibility with Stellaris v3.10.0 (Pyxis) - TBC (waiting for release)
   - Added option to pick which Precursor spawns (or disable Precursors entirely)
   - Added option to remove diplomacy tradition being a requirement to form a federation
-  - Added option to significantly reduce influence cost of espionage operations - TODO
+  - Added option to significantly reduce influence cost of espionage operations - done base game, still need to do Nemesis and First Contact ones
   - Bugfix where Ultima Vigilis/Ithome Cluster tweak wasn't working properly
-  - Bugfix where disable AI habitats tweak wasn't working properly
+  - Bugfix where disable AI researching habitats tweak wasn't working properly
 
 # Full list of available tweaks:
 
@@ -54,7 +54,7 @@ You will need to re-run the script whenever the game is updated, or to make chan
 - End of the Cycle now has an equal chance of appearing
 - Guarantee or Disable the War in Heaven
 - Disable AI researching habitats
-
+- Reduce influence cost of espionage operations (reduction is around 90%)
 
 ## Guardians:
 
@@ -122,8 +122,10 @@ If there are any events/systems/etc you'd like added to this list - again, pleas
 - fallen_empire_awakening_events.txt
 - leviathans_system_initializers.txt
 - marauder_events.txt
+- operations.txt
 - paragon_initializers.txt
 - pre_ftl_initializers.txt
+- pre_ftl_operations.txt
 - precursor_events.txt
 - unique_system_initializers.txt
 - utopia_shroud_events.txt
