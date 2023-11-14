@@ -2333,13 +2333,13 @@ else {write-host "Invalid option selected, skipping!"-foregroundcolor "yellow"
 }
 }
 else {
-Write-Host "Set Espionage Influence Costs - Unable to locate parameter, skipping" -foregroundcolor "yellow"
+Write-Host "Set Espionage Influence Costs (Base Game) - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 
-
-############################################################################################
 if($dlc_nem){
-  
+
+Write-Host "----------------------------------------"
+
 $file = "common\espionage_operation_types\operations.txt"
 $content = Get-Content -Path $file
 
@@ -2455,52 +2455,228 @@ $check12a = '			influence = 250'
 $check12b = '			influence = 25'
 
 if (($data -eq $check1a) -or ($data -eq $check1b)) {$chkflag = 0} else {$chkflag = 1}
-if (($data -eq $check2a) -or ($data -eq $check2b)) {$chkflag2 = 0} else {$chkflag2 = 1}
-if (($data -eq $check3a) -or ($data -eq $check3b)) {$chkflag3 = 0} else {$chkflag3 = 1}
-if (($data -eq $check4a) -or ($data -eq $check4b)) {$chkflag4 = 0} else {$chkflag4 = 1}
-if (($data -eq $check5a) -or ($data -eq $check5b)) {$chkflag5 = 0} else {$chkflag5 = 1}
-if (($data -eq $check6a) -or ($data -eq $check6b)) {$chkflag6 = 0} else {$chkflag6 = 1}
-if (($data -eq $check7a) -or ($data -eq $check7b)) {$chkflag7 = 0} else {$chkflag7 = 1}
-if (($data -eq $check8a) -or ($data -eq $check8b)) {$chkflag8 = 0} else {$chkflag8 = 1}
-if (($data -eq $check9a) -or ($data -eq $check9b)) {$chkflag9 = 0} else {$chkflag9 = 1}
-if (($data -eq $check10a) -or ($data -eq $check10b)) {$chkflag10 = 0} else {$chkflag10 = 1}
-if (($data -eq $check11a) -or ($data -eq $check11b)) {$chkflag11 = 0} else {$chkflag11 = 1}
-if (($data -eq $check12a) -or ($data -eq $check12b)) {$chkflag12 = 0} else {$chkflag12 = 1}
+if (($data2 -eq $check2a) -or ($data2 -eq $check2b)) {$chkflag2 = 0} else {$chkflag2 = 1}
+if (($data3 -eq $check3a) -or ($data3 -eq $check3b)) {$chkflag3 = 0} else {$chkflag3 = 1}
+if (($data4 -eq $check4a) -or ($data4 -eq $check4b)) {$chkflag4 = 0} else {$chkflag4 = 1}
+if (($data5 -eq $check5a) -or ($data5 -eq $check5b)) {$chkflag5 = 0} else {$chkflag5 = 1}
+if (($data6 -eq $check6a) -or ($data6 -eq $check6b)) {$chkflag6 = 0} else {$chkflag6 = 1}
+if (($data7 -eq $check7a) -or ($data7 -eq $check7b)) {$chkflag7 = 0} else {$chkflag7 = 1}
+if (($data8 -eq $check8a) -or ($data8 -eq $check8b)) {$chkflag8 = 0} else {$chkflag8 = 1}
+if (($data9 -eq $check9a) -or ($data9 -eq $check9b)) {$chkflag9 = 0} else {$chkflag9 = 1}
+if (($data10 -eq $check10a) -or ($data10 -eq $check10b)) {$chkflag10 = 0} else {$chkflag10 = 1}
+if (($data11 -eq $check11a) -or ($data11 -eq $check11b)) {$chkflag11 = 0} else {$chkflag11 = 1}
+if (($data12 -eq $check12a) -or ($data12 -eq $check12b)) {$chkflag12 = 0} else {$chkflag12 = 1}
 
 $checksum = $chkflag + $chkflag2 + $chkflag3 + $chkflag4 + $chkflag5 + $chkflag6 + $chkflag7 + $chkflag8 + $chkflag9 + $chkflag10 + $chkflag11 + $chkflag12
 
 if ($checksum -eq 0){
-    Write-Host ">Base Game:"
+    Write-Host ">Nemesis Expansion:"
     Write-Host ">Influence Cost of Espionage Operations (Nemesis Expansion Pack)"
     Write-Host ">Options:"
     Write-Host "0 - Skip"
     Write-Host "1 - Vanilla Costs"
     Write-Host "2 - Reduced Costs (~90% reduction)"
     $choice = Read-Host "Please select an option"
+
 if ($choice -eq 0){Write-Host "Skipping!" -foregroundcolor "yellow"}
+
 elseif ($choice -eq 1){
 
+    $content[$line+9] = '			influence = 30'
+    $content[$line2+11] = '			influence = 45'
+    $content[$line3+9] = '			influence = 45'
+    $content[$line4+9] = '			influence = 60'
+    $content[$line5+9] = '			influence = 60'
+    $content[$line6+9] = '			influence = 80'
+    $content[$line7+15] = '			influence = 100'
+    $content[$line8+9] = '			influence = 180'
+    $content[$line9+9] = '			influence = 320'
+    $content[$line10+9] = '			influence = 60'
+    $content[$line11+9] = '			influence = 60'
+    $content[$line12+9] = '			influence = 250'
+    $content | Set-Content -Path $file
+    Write-Host "Set Vanilla Espionage Operation Costs (Nemesis Expansion)"
 
 }
 elseif ($choice -eq 2){
 
+    $content[$line+9] = '			influence = 3'
+    $content[$line2+11] = '			influence = 4'
+    $content[$line3+9] = '			influence = 4'
+    $content[$line4+9] = '			influence = 6'
+    $content[$line5+9] = '			influence = 6'
+    $content[$line6+9] = '			influence = 8'
+    $content[$line7+15] = '			influence = 10'
+    $content[$line8+9] = '			influence = 18'
+    $content[$line9+9] = '			influence = 32'
+    $content[$line10+9] = '			influence = 6'
+    $content[$line11+9] = '			influence = 6'
+    $content[$line12+9] = '			influence = 25'
+    $content | Set-Content -Path $file
+    Write-Host "Reduced Espionage Operation Costs (Nemesis Expansion)"
 
 }
 else {write-host "Invalid option selected, skipping!"-foregroundcolor "yellow"
 }
 }
 else {
-Write-Host "Set Espionage Influence Costs - Unable to locate parameter, skipping" -foregroundcolor "yellow"
+Write-Host "Set Espionage Influence Costs (Nemesis Expansion) - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
 }
-
-
-############################################################################################
 
 if(dlc_firstcon){
+    Write-Host "----------------------------------------"
     $file = "common\espionage_operation_types\pre_ftl_operations.txt"
-$content = Get-Content -Path $file
+    $content = Get-Content -Path $file
+
+    $search="operation_increase_awareness = {"
+    $line  = Get-Content $file | 
+    Select-String $search | 
+    Select-Object -First 1 | 
+    Select-Object -ExpandProperty LineNumber
+
+    $search2="operation_spread_disinformation = {"
+    $line2  = Get-Content $file | 
+    Select-String $search | 
+    Select-Object -First 1 | 
+    Select-Object -ExpandProperty LineNumber
+
+    $search3="operation_plant_advanced_knowledge = {"
+    $line3  = Get-Content $file | 
+    Select-String $search | 
+    Select-Object -First 1 | 
+    Select-Object -ExpandProperty LineNumber
+
+    $search4="operation_indoctrinate_society = {"
+    $line4  = Get-Content $file | 
+    Select-String $search | 
+    Select-Object -First 1 | 
+    Select-Object -ExpandProperty LineNumber
+
+    $search5="operation_infiltrate_government = {"
+    $line5  = Get-Content $file | 
+    Select-String $search | 
+    Select-Object -First 1 | 
+    Select-Object -ExpandProperty LineNumber
+
+    $search6="operation_infiltrate_hive = {"
+    $line6  = Get-Content $file | 
+    Select-String $search | 
+    Select-Object -First 1 | 
+    Select-Object -ExpandProperty LineNumber
+
+    $data = $content[$line+14]
+    $data2 = $content[$line+22]
+    $data3 = $content[$line2+14]
+    $data4 = $content[$line2+22]
+    $data5 = $content[$line3+14]
+    $data6 = $content[$line3+22]
+    $data7 = $content[$line4+14]
+    $data8 = $content[$line4+22]
+    $data9 = $content[$line5+14]
+    $data10 = $content[$line5+22]
+    $data11 = $content[$line6+14]
+    $data12 = $content[$line6+22]
+
+    $check1a = '			influence = 45'
+    $check1b = '			influence = 4'
+    $check2a = '			influence = 25'
+    $check2b = '			influence = 2'
+    $check3a = '			influence = 45'
+    $check3b = '			influence = 4'
+    $check4a = '			influence = 25'
+    $check4b = '			influence = 2'
+    $check5a = '			influence = 30'
+    $check5b = '			influence = 3'
+    $check6a = '			influence = 20'
+    $check6b = '			influence = 2'
+    $check7a = '			influence = 55'
+    $check7b = '			influence = 5'
+    $check8a = '			influence = 35'
+    $check8b = '			influence = 3'
+    $check9a = '			influence = 60'
+    $check9b = '			influence = 6'
+    $check10a = '			influence = 40'
+    $check10b = '			influence = 4'
+    $check11a = '			influence = 60'
+    $check11b = '			influence = 6'
+    $check12a = '			influence = 40'
+    $check12b = '			influence = 4'
+
+    if (($data -eq $check1a) -or ($data -eq $check1b)) {$chkflag = 0} else {$chkflag = 1}
+    if (($data2 -eq $check2a) -or ($data2 -eq $check2b)) {$chkflag2 = 0} else {$chkflag2 = 1}
+    if (($data3 -eq $check3a) -or ($data3 -eq $check3b)) {$chkflag3 = 0} else {$chkflag3 = 1}
+    if (($data4 -eq $check4a) -or ($data4 -eq $check4b)) {$chkflag4 = 0} else {$chkflag4 = 1}
+    if (($data5 -eq $check5a) -or ($data5 -eq $check5b)) {$chkflag5 = 0} else {$chkflag5 = 1}
+    if (($data6 -eq $check6a) -or ($data6 -eq $check6b)) {$chkflag6 = 0} else {$chkflag6 = 1}
+    if (($data7 -eq $check7a) -or ($data7 -eq $check7b)) {$chkflag7 = 0} else {$chkflag7 = 1}
+    if (($data8 -eq $check8a) -or ($data8 -eq $check8b)) {$chkflag8 = 0} else {$chkflag8 = 1}
+    if (($data9 -eq $check9a) -or ($data9 -eq $check9b)) {$chkflag9 = 0} else {$chkflag9 = 1}
+    if (($data10 -eq $check10a) -or ($data10 -eq $check10b)) {$chkflag10 = 0} else {$chkflag10 = 1}
+    if (($data11 -eq $check11a) -or ($data11 -eq $check11b)) {$chkflag11 = 0} else {$chkflag11 = 1}
+    if (($data12 -eq $check12a) -or ($data12 -eq $check12b)) {$chkflag12 = 0} else {$chkflag12 = 1}
+
+    $checksum = $chkflag + $chkflag2 + $chkflag3 + $chkflag4 + $chkflag5 + $chkflag6 + $chkflag7 + $chkflag8 + $chkflag9 + $chkflag10 + $chkflag11 + $chkflag12
+
+if ($checksum -eq 0){
+    Write-Host ">First Contact Story Pack:"
+    Write-Host ">Influence Cost of Espionage Operations (First Contact Story Pack)"
+    Write-Host ">Options:"
+    Write-Host "0 - Skip"
+    Write-Host "1 - Vanilla Costs"
+    Write-Host "2 - Reduced Costs (~90% reduction)"
+    $choice = Read-Host "Please select an option"
+
+if ($choice -eq 0){Write-Host "Skipping!" -foregroundcolor "yellow"}
+
+elseif ($choice -eq 1){
+
+    $content[$line+14] = '			influence = 45'
+    $content[$line+22] = '			influence = 25'
+    $content[$line2+14] = '			influence = 45'
+    $content[$line2+22] = '			influence = 25'
+    $content[$line3+14] = '			influence = 30'
+    $content[$line3+22] = '			influence = 20'
+    $content[$line4+14] = '			influence = 55'
+    $content[$line4+22] = '			influence = 35'
+    $content[$line5+14] = '			influence = 60'
+    $content[$line5+22] = '			influence = 40'
+    $content[$line6+14] = '			influence = 60'
+    $content[$line6+22] = '			influence = 40'
+    $content | Set-Content -Path $file
+
+    Write-Host "Set Vanilla Espionage Operation Costs (First Contact Story Pack)"
 }
+
+elseif ($choice -eq 2){
+
+    $content[$line+14] = '			influence = 4'
+    $content[$line+22] = '			influence = 2'
+    $content[$line2+14] = '			influence = 4'
+    $content[$line2+22] = '			influence = 2'
+    $content[$line3+14] = '			influence = 3'
+    $content[$line3+22] = '			influence = 2'
+    $content[$line4+14] = '			influence = 5'
+    $content[$line4+22] = '			influence = 3'
+    $content[$line5+14] = '			influence = 6'
+    $content[$line5+22] = '			influence = 4'
+    $content[$line6+14] = '			influence = 6'
+    $content[$line6+22] = '			influence = 4'
+    $content | Set-Content -Path $file
+    Write-Host "Reduced Espionage Operation Costs (First Contact Story Pack)"
+
+}
+else {write-host "Invalid option selected, skipping!"-foregroundcolor "yellow"
+}
+}
+else {
+Write-Host "Set Espionage Influence Costs (First Contact Story Pack) - Unable to locate parameter, skipping" -foregroundcolor "yellow"
+}
+}
+
+}
+
+############################################################################################
 
 Write-Host "----------------------------------------"
 Write-Host "########################################"

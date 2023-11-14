@@ -21,7 +21,9 @@ You will need to re-run the script whenever the game is updated, or to make chan
   - Updated for compatibility with Stellaris v3.10.0 (Pyxis) - TBC (waiting for release)
   - Added option to pick which Precursor spawns (or disable Precursors entirely)
   - Added option to remove diplomacy tradition being a requirement to form a federation
-  - Added option to significantly reduce influence cost of espionage operations - done base game, still need to do Nemesis and First Contact ones
+  - Added Dugar system guarantee spawn option
+  - Added Larionessi Refuge system guarantee spawn option
+  - Added option to significantly reduce influence cost (by around 90%) of espionage operations
   - Bugfix where Ultima Vigilis/Ithome Cluster tweak wasn't working properly
   - Bugfix where disable AI researching habitats tweak wasn't working properly
 
