@@ -21,8 +21,8 @@ $platform = Read-Host "Please select your platform"
 Write-Host "----------------------------------------"
 
 if($platform -eq 1){
-    #$stel_path = "D:\Steam Favourites\SteamApps\common\Stellaris"
-    $stel_path = "C:\Program Files (x86)\Steam\SteamApps\common\Stellaris"
+    $stel_path = "D:\Steam Favourites\SteamApps\common\Stellaris"
+    #$stel_path = "C:\Program Files (x86)\Steam\SteamApps\common\Stellaris"
     $stel_path_check = Test-Path $stel_path
 }
 elseif($platform -eq 2){
@@ -1451,7 +1451,6 @@ Write-Host "Remove diplomacy tradition requirement to form a Federation - Unable
 }
 
 Write-Host "----------------------------------------"
-Write-Host ">Base Game:"
 $file = "common\federation_types\00_federation_types.txt"
 $content = Get-Content -Path $file
 # Galactic Union
@@ -2279,18 +2278,18 @@ $line  = Get-Content $file |
 
 $search2="operation_consume_star = {" # base game operation
 $line2  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search2 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search3="operation_kaleidoscope = {" # base game operation
 $line3  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search3 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $data = $content[$line+16]
-$data2 = $content[$line2+11]
+$data2 = $content[$line2+8]
 $data3 = $content[$line3+8]
 
 $check1a = '			influence = 20'
@@ -2351,67 +2350,67 @@ $line  = Get-Content $file |
 
 $search2="operation_sleeper_cells = {"
 $line2  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search2 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search3="operation_acquire_asset = {"
 $line3  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search3 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search4="operation_extort_favors = {"
 $line4  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search4 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search5="operation_smear_campaign = {"
 $line5  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search5 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search6="operation_steal_technology = {"
 $line6  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search6 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search7="operation_sabotage_starbase = {"
 $line7  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search7 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search8="operation_arm_privateers = {"
 $line8  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search8 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search9="operation_crisis_beacon = {"
 $line9  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search9 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search10="operation_weaken_galactic_empire = {"
 $line10  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search10 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search11="operation_target_seditionists = {"
 $line11  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search11 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
 $search12="operation_spark_rebellion = {"
 $line12  = Get-Content $file | 
-   Select-String $search | 
+   Select-String $search12 | 
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
@@ -2524,7 +2523,7 @@ Write-Host "Set Espionage Influence Costs (Nemesis Expansion) - Unable to locate
 }
 }
 
-if(dlc_firstcon){
+if($dlc_firstcon){
     Write-Host "----------------------------------------"
     $file = "common\espionage_operation_types\pre_ftl_operations.txt"
     $content = Get-Content -Path $file
@@ -2537,31 +2536,31 @@ if(dlc_firstcon){
 
     $search2="operation_spread_disinformation = {"
     $line2  = Get-Content $file | 
-    Select-String $search | 
+    Select-String $search2 | 
     Select-Object -First 1 | 
     Select-Object -ExpandProperty LineNumber
 
     $search3="operation_plant_advanced_knowledge = {"
     $line3  = Get-Content $file | 
-    Select-String $search | 
+    Select-String $search3 | 
     Select-Object -First 1 | 
     Select-Object -ExpandProperty LineNumber
 
     $search4="operation_indoctrinate_society = {"
     $line4  = Get-Content $file | 
-    Select-String $search | 
+    Select-String $search4 | 
     Select-Object -First 1 | 
     Select-Object -ExpandProperty LineNumber
 
     $search5="operation_infiltrate_government = {"
     $line5  = Get-Content $file | 
-    Select-String $search | 
+    Select-String $search5 | 
     Select-Object -First 1 | 
     Select-Object -ExpandProperty LineNumber
 
     $search6="operation_infiltrate_hive = {"
     $line6  = Get-Content $file | 
-    Select-String $search | 
+    Select-String $search6 | 
     Select-Object -First 1 | 
     Select-Object -ExpandProperty LineNumber
 
