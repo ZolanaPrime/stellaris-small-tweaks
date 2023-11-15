@@ -564,8 +564,8 @@ if($dlc_firstcon){
     elseif($choice -eq 3){
         $content[$line+8] = '			#2 = { } # nothing'
         $content[$line+9] = '			1 = {'
-        $content[$line+13] = '				}}
-        $content[$line+14] = '			random_list = {1 = {
+        $content[$line+13] = '				}}'
+        $content[$line+14] = '			random_list = {1 = {'
         $content[$line+30] = '		    }}'
         $content | Set-Content -Path $file
         Write-Host "Guaranteed Spawn: Ultima Vigilis and Ithome Cluster (The Chosen)"
@@ -2672,7 +2672,7 @@ else {write-host "Invalid option selected, skipping!"-foregroundcolor "yellow"
 else {
 Write-Host "Set Espionage Influence Costs (First Contact Story Pack) - Unable to locate parameter, skipping" -foregroundcolor "yellow"
 }
-}
+
 
 }
 
