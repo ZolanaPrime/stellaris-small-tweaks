@@ -2316,14 +2316,14 @@ if ($checksum -eq 0){
 if ($choice -eq 0){Write-Host "Skipping!" -foregroundcolor "yellow"}
 elseif ($choice -eq 1){
 $content[$line+16] = '			influence = 20'
-$content[$line2+11] = '			influence = 250'
+$content[$line2+8] = '			influence = 250'
 $content[$line3+8] = '			influence = 20'
 $content | Set-Content -Path $file
     Write-Host "Set Vanilla Espionage Operation Costs (Base Game)"
 }
 elseif ($choice -eq 2){
 $content[$line+16] = '			influence = 2'
-$content[$line2+11] = '			influence = 25'
+$content[$line2+8] = '			influence = 25'
 $content[$line3+8] = '			influence = 2'
 $content | Set-Content -Path $file
     Write-Host "Reduced Espionage Operation Costs (Base Game)"
