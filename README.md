@@ -2,7 +2,7 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.3.1.ps1 - for Stellaris v3.9.3 (Caelum)
+# Latest file - zol-stellaris-tweaks-v1.4.0.ps1 - for Stellaris v3.10.0 (Pyxis)
 
 - This is a collection of small tweaks that you can use to adjust various parameters in your Stellaris games.
 - It consists of a PowerShell query - run it and just follow the prompts!
@@ -16,11 +16,16 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
 **Not compatible with Achievements, or other mods that edit the relevant sections of the vanilla files (full list below)!**
 
-# v1.3.1 New Features:
+# v1.4.0 New Features:
 
-- Updated for compatibility with Stellaris v3.9.3 (Caelum)
-- In vanilla, non-Hegemony Federations now default to not allowing subject members.  
-- The tweaks for these are still available, but the default behaviour text has been amended to reflect this change.
+  - Updated for compatibility with Stellaris v3.10.0 (Pyxis)
+  - Added option to pick which Precursor spawns (or disable Precursors entirely)
+  - Added option to remove diplomacy tradition being a requirement to form a federation
+  - Added Dugar system guarantee spawn option
+  - Added Larionessi Refuge system guarantee spawn option
+  - Added option to significantly reduce influence cost (by around 90%) of espionage operations
+  - Bugfix where Ultima Vigilis/Ithome Cluster tweak wasn't working properly
+  - Bugfix where disable AI researching habitats tweak wasn't working properly
 
 # Full list of available tweaks:
 
@@ -30,9 +35,11 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
 - Great Wound
 - Ithome Cluster
+- Larionessi Refuge
 - Sanctuary
 - Ultima Vigilis
 - L Cluster - choose what spawns!
+- Select which Precursor spawns (or disable them entirely)
 
 ## Events:
 
@@ -49,6 +56,7 @@ You will need to re-run the script whenever the game is updated, or to make chan
 - End of the Cycle now has an equal chance of appearing
 - Guarantee or Disable the War in Heaven
 - Disable AI researching habitats
+- Reduce influence cost of espionage operations (reduction is around 90%)
 
 ## Guardians:
 
@@ -65,8 +73,6 @@ You will need to re-run the script whenever the game is updated, or to make chan
 - Voidspawn
 - Wraith
 
-## Miscellaneous Tweaks:
-
 ### Empire Defaults
 
 - Adjust the base number of envoys each empire starts with (default/vanilla = 2)
@@ -74,6 +80,7 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
 ### Federations:
 
+- Remove diplomacy tradition being a requirement to form a federation
 - Disable subjects joining automatically on federation creation
     - Can tweak by Federation type
 
@@ -103,10 +110,12 @@ If there are any events/systems/etc you'd like added to this list - again, pleas
 
 ### Vanilla files changed:
 
+- 00_actions.txt (\common\diplomatic_actions)
 - 00_defines.txt
 - 00_eng_tech.txt
 - 00_federation_types.txt
 - 00_on_actions.txt
+- ancient_relics_arcsite_events_1.txt
 - ancient_relics_arcsite_events_2.txt
 - caravaneer_events.txt
 - central_crystal_events.txt
@@ -115,5 +124,10 @@ If there are any events/systems/etc you'd like added to this list - again, pleas
 - fallen_empire_awakening_events.txt
 - leviathans_system_initializers.txt
 - marauder_events.txt
+- operations.txt
+- paragon_initializers.txt
 - pre_ftl_initializers.txt
+- pre_ftl_operations.txt
+- precursor_events.txt
+- unique_system_initializers.txt
 - utopia_shroud_events.txt

@@ -835,7 +835,7 @@ if($dlc_lev){
             Write-Host ">War in Heaven (requires at least 2 Awakened Fallen Empires)?"
             Write-Host "0 - Skip"
             Write-Host "1 - Always"
-            Write-Host "2 - Never (Vanilla)"
+            Write-Host "2 - Never"
             Write-Host "3 - Vanilla Behaviour"
             $choice = Read-Host "Please select an option"
             if($choice -eq 1){
