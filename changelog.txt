@@ -1,7 +1,7 @@
 ###############################################################################
 
 Version 1.4.0
- XX/11/2023
+ 16/11/2023
 
   - Updated for compatibility with Stellaris v3.10.0 (Pyxis)
   - Added option to pick which Precursor spawns (or disable Precursors entirely)

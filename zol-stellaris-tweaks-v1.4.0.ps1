@@ -21,8 +21,8 @@ $platform = Read-Host "Please select your platform"
 Write-Host "----------------------------------------"
 
 if($platform -eq 1){
-    $stel_path = "D:\Steam Favourites\SteamApps\common\Stellaris"
-    #$stel_path = "C:\Program Files (x86)\Steam\SteamApps\common\Stellaris"
+    #$stel_path = "D:\Steam Favourites\SteamApps\common\Stellaris"
+    $stel_path = "C:\Program Files (x86)\Steam\SteamApps\common\Stellaris"
     $stel_path_check = Test-Path $stel_path
 }
 elseif($platform -eq 2){
@@ -278,7 +278,7 @@ $dlc_galpar = Test-Path "dlc\dlc030_paragon\dlc030.dlc"
 if($dlc_galpar){Write-Host ">Detected Galactic Paragons Expansion" -foregroundcolor "green"}
 else {Write-Host ">Galactic Paragons Expansion Not Detected" -foregroundcolor "red"}
 
-$dlc_astplan = Test-Path "dlc\dlc031_astralplanes\dlc031.dlc"
+$dlc_astplan = Test-Path "dlc\dlc031_astral_planes\dlc031.dlc"
 if($dlc_astplan){Write-Host ">Detected Astral Planes Narrative Pack" -foregroundcolor "green"}
 else {Write-Host ">Astral Planes Narrative Pack Not Detected" -foregroundcolor "red"}
 
@@ -741,7 +741,7 @@ $line  = Get-Content $file |
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
-$data = $content[$line+18]
+$data = $content[$line+19]
 $check = "		19 = 0"
 $check2 = "			#"
 if(($data -eq $check) -or ($data -eq $check2)){
@@ -751,12 +751,12 @@ Write-Host "1 - Guarantee Trigger"
 Write-Host "2 - Vanilla Trigger Rate"
 $choice = Read-Host "Please select an option"
 if($choice -eq 1){
-$content[$line+18] = '			#'
+$content[$line+19] = '			#'
 $content | Set-Content -Path $file
 Write-Host "Guaranteed Event Trigger: Horizon Signal"
 }
 elseif($choice -eq 2){
-$content[$line+18] = "		19 = 0"
+$content[$line+19] = "		19 = 0"
 
 $content | Set-Content -Path $file
 Write-Host "Vanilla Event Chances: Horizon Signal"
@@ -1927,11 +1927,11 @@ $line7  = Get-Content $file2 |
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
-$data = $content[$line+22]
-$data2 = $content[$line2+22]
-$data3 = $content[$line3+22]
-$data4 = $content[$line4+22]
-$data5 = $content[$line5+22]
+$data = $content[$line+26]
+$data2 = $content[$line2+26]
+$data3 = $content[$line3+26]
+$data4 = $content[$line4+26]
+$data5 = $content[$line5+26]
 
 $data6 = $content2[$line6+29]
 $data7= $content2[$line7+37]
