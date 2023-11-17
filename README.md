@@ -4,6 +4,8 @@
 
 # Latest file - zol-stellaris-tweaks-v1.4.0.ps1 - for Stellaris v3.10.0 (Pyxis)
 
+If downloaded from Steam, the file is saved in C:\Users\YOUR USERNAME\Documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\
+
 - This is a collection of small tweaks that you can use to adjust various parameters in your Stellaris games.
 - It consists of a PowerShell query - run it and just follow the prompts!
 - Pick and choose what tweaks suit your playstyle!
