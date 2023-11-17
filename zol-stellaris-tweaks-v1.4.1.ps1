@@ -1,7 +1,7 @@
 Write-Host "########################################"
 Write-Host "###### Zolana's Stellaris Tweaks #######"
-Write-Host "############ Version 1.4.0 #############"
-$patcher_ver = "1.4.0"
+Write-Host "############ Version 1.4.1 #############"
+$patcher_ver = "1.4.1"
 Write-Host "########################################"
 Write-Host "######## Patcher for Stellaris: ########"
 Write-Host "########### v3.10.0 (Pyxis) ############"
@@ -544,38 +544,94 @@ if($dlc_firstcon){
     $choice = Read-Host "Please select an option"
 
     if($choice -eq 1){
+        $content[$line+7] = '		random_list = {'
         $content[$line+8] = '			#2 = { } # nothing'
         $content[$line+9] = '			1 = {'
         $content[$line+13] = '				}'
         $content[$line+14] = '			0 = {'
+        $content[$line+15] = '				modifier = {'
+        $content[$line+16] = '					factor = 0'
+        $content[$line+17] = '					has_first_contact_dlc = no'
+        $content[$line+18] = '				}'
+        $content[$line+19] = '				modifier = { #Chosen dont spawn on lowest difficulty'
+        $content[$line+20] = '					factor = 0'
+        $content[$line+21] = '					is_difficulty = 0'
+        $content[$line+22] = '				}'
+        $content[$line+23] = '				modifier = { #Chosen dont spawn if you have turned off all other AI'
+        $content[$line+24] = '					factor = 0'
+        $content[$line+25] = '					num_ai_empires_setting = 0'
+        $content[$line+26] = '				}'
         $content[$line+30] = '		    }'
+        $content[$line+31] = '		}'
         $content | Set-Content -Path $file
         Write-Host "Guaranteed Spawn: Ultima Vigilis"
     }
     elseif($choice -eq 2){
+        $content[$line+7] = '		random_list = {'
         $content[$line+8] = '			#2 = { } # nothing'
         $content[$line+9] = '			0 = {'
-        $content[$line+13] = '			}'
+        $content[$line+13] = '				}'
         $content[$line+14] = '			1 = {'
+        $content[$line+15] = '				modifier = {'
+        $content[$line+16] = '					factor = 0'
+        $content[$line+17] = '					has_first_contact_dlc = no'
+        $content[$line+18] = '				}'
+        $content[$line+19] = '				modifier = { #Chosen dont spawn on lowest difficulty'
+        $content[$line+20] = '					factor = 0'
+        $content[$line+21] = '					is_difficulty = 0'
+        $content[$line+22] = '				}'
+        $content[$line+23] = '				modifier = { #Chosen dont spawn if you have turned off all other AI'
+        $content[$line+24] = '					factor = 0'
+        $content[$line+25] = '					num_ai_empires_setting = 0'
+        $content[$line+26] = '				}'
         $content[$line+30] = '		    }'
+        $content[$line+31] = '		}'
         $content | Set-Content -Path $file
         Write-Host "Guaranteed Spawn: Ithome Cluster (The Chosen)"
     }
     elseif($choice -eq 3){
+        $content[$line+7] = '		#random_list = {'
         $content[$line+8] = '			#2 = { } # nothing'
-        $content[$line+9] = '			1 = {'
-        $content[$line+13] = '				}}'
-        $content[$line+14] = '			random_list = {1 = {'
-        $content[$line+30] = '		    }}'
+        $content[$line+9] = '			#1 = {'
+        $content[$line+13] = '				#}'
+        $content[$line+14] = '			#1 = {'
+        $content[$line+15] = '				#modifier = {'
+        $content[$line+16] = '				#	factor = 0'
+        $content[$line+17] = '				#	has_first_contact_dlc = no'
+        $content[$line+18] = '				#}'
+        $content[$line+19] = '				#modifier = { #Chosen dont spawn on lowest difficulty'
+        $content[$line+20] = '				#	factor = 0'
+        $content[$line+21] = '				#	is_difficulty = 0'
+        $content[$line+22] = '				#}'
+        $content[$line+23] = '				#modifier = { #Chosen dont spawn if you have turned off all other AI'
+        $content[$line+24] = '				#	factor = 0'
+        $content[$line+25] = '				#	num_ai_empires_setting = 0'
+        $content[$line+26] = '				#}'
+        $content[$line+30] = '		    #}'
+        $content[$line+31] = '		#}'
         $content | Set-Content -Path $file
         Write-Host "Guaranteed Spawn: Ultima Vigilis and Ithome Cluster (The Chosen)"
     }
     elseif($choice -eq 4){
+        $content[$line+7] = '		random_list = {'
         $content[$line+8] = '			2 = { } # nothing'
         $content[$line+9] = '			1 = {'
-        $content[$line+13] = '			}'
+        $content[$line+13] = '				}'
         $content[$line+14] = '			1 = {'
+        $content[$line+15] = '				modifier = {'
+        $content[$line+16] = '					factor = 0'
+        $content[$line+17] = '					has_first_contact_dlc = no'
+        $content[$line+18] = '				}'
+        $content[$line+19] = '				modifier = { #Chosen dont spawn on lowest difficulty'
+        $content[$line+20] = '					factor = 0'
+        $content[$line+21] = '					is_difficulty = 0'
+        $content[$line+22] = '				}'
+        $content[$line+23] = '				modifier = { #Chosen dont spawn if you have turned off all other AI'
+        $content[$line+24] = '					factor = 0'
+        $content[$line+25] = '					num_ai_empires_setting = 0'
+        $content[$line+26] = '				}'
         $content[$line+30] = '		    }'
+        $content[$line+31] = '		}'
         $content | Set-Content -Path $file
         Write-Host "Vanilla Spawn Rate: Ultima Vigilis and Ithome Cluster (The Chosen)"
     }

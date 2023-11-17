@@ -18,7 +18,7 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
 **Not compatible with Achievements, or other mods that edit the relevant sections of the vanilla files (full list below)!**
 
-# v1.4.0 New Features:
+# v1.4.1 New Features:
 
   - Updated for compatibility with Stellaris v3.10.0 (Pyxis)
   - Added option to pick which Precursor spawns (or disable Precursors entirely)
@@ -26,7 +26,7 @@ You will need to re-run the script whenever the game is updated, or to make chan
   - Added Dugar system guarantee spawn option
   - Added Larionessi Refuge system guarantee spawn option
   - Added option to significantly reduce influence cost (by around 90%) of espionage operations
-  - Bugfix where Ultima Vigilis/Ithome Cluster tweak wasn't working properly
+  - Bugfix where Ultima Vigilis/Ithome Cluster tweak wasn't working properly (for real this time)
   - Bugfix where disable AI researching habitats tweak wasn't working properly
 
 # Full list of available tweaks:

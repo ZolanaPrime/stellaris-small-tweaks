@@ -1,5 +1,12 @@
 ###############################################################################
 
+Version 1.4.1
+ 17/11/2023
+
+  - Bugfix where Ultima Vigilis/Ithome Cluster tweak still wasn't working properly (pretty sure it's working now!)
+  
+  ###############################################################################
+
 Version 1.4.0
  16/11/2023
 
