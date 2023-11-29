@@ -2,7 +2,7 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.4.2.ps1 - for Stellaris v3.10.1 (Pyxis)
+# Latest file - zol-stellaris-tweaks-v1.4.2.ps1 - for Stellaris v3.10.2 (Pyxis)
 
 If downloaded from Steam, the file is saved in C:\Users\YOUR USERNAME\Documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\
 
@@ -20,7 +20,7 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
 # v1.4.x New Features:
 
-  - Updated for compatibility with Stellaris v3.10 (Pyxis)
+  - Updated for compatibility with Stellaris v3.10.x (Pyxis)
   - Added option to pick which Precursor spawns (or disable Precursors entirely)
   - Added option to remove diplomacy tradition being a requirement to form a federation
   - Added Dugar system guarantee spawn option

@@ -4,8 +4,8 @@ Write-Host "############ Version 1.4.2 #############"
 $patcher_ver = "1.4.2"
 Write-Host "########################################"
 Write-Host "######## Patcher for Stellaris: ########"
-Write-Host "########### v3.10.1 (Pyxis) ############"
-$ver = "3.10.1"
+Write-Host "########### v3.10.2 (Pyxis) ############"
+$ver = "3.10.2"
 Write-Host "########################################"
 Write-Host "########## Environment Setup ###########"
 Write-Host "----------------------------------------"
@@ -801,7 +801,7 @@ $line  = Get-Content $file |
    Select-Object -First 1 | 
    Select-Object -ExpandProperty LineNumber
 
-$data = $content[$line+19]
+$data = $content[$line+20]
 $check = "		19 = 0"
 $check2 = "			#"
 if(($data -eq $check) -or ($data -eq $check2)){
@@ -811,12 +811,12 @@ Write-Host "1 - Guarantee Trigger"
 Write-Host "2 - Vanilla Trigger Rate"
 $choice = Read-Host "Please select an option"
 if($choice -eq 1){
-$content[$line+19] = '			#'
+$content[$line+20] = '			#'
 $content | Set-Content -Path $file
 Write-Host "Guaranteed Event Trigger: Horizon Signal"
 }
 elseif($choice -eq 2){
-$content[$line+19] = "		19 = 0"
+$content[$line+20] = "		19 = 0"
 
 $content | Set-Content -Path $file
 Write-Host "Vanilla Event Chances: Horizon Signal"

@@ -3,7 +3,7 @@
 Version 1.4.2
  29/11/2023
 
- - Updated for compatibility with Stellaris v3.10.1 (Pyxis)
+ - Updated for compatibility with Stellaris v3.10.2 (Pyxis)
  - Made the Ultima Vigilis tweak more robust for cases where the First Contact DLC is not owned.
 
 ###############################################################################
