@@ -2,7 +2,7 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.4.1.ps1 - for Stellaris v3.10.0 (Pyxis)
+# Latest file - zol-stellaris-tweaks-v1.4.2.ps1 - for Stellaris v3.10.1 (Pyxis)
 
 If downloaded from Steam, the file is saved in C:\Users\YOUR USERNAME\Documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\
 
@@ -18,16 +18,18 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
 **Not compatible with Achievements, or other mods that edit the relevant sections of the vanilla files (full list below)!**
 
-# v1.4.0/1.4.1 New Features:
+# v1.4.x New Features:
 
-  - Updated for compatibility with Stellaris v3.10.0 (Pyxis)
+  - Updated for compatibility with Stellaris v3.10 (Pyxis)
   - Added option to pick which Precursor spawns (or disable Precursors entirely)
   - Added option to remove diplomacy tradition being a requirement to form a federation
   - Added Dugar system guarantee spawn option
   - Added Larionessi Refuge system guarantee spawn option
   - Added option to significantly reduce influence cost (by around 90%) of espionage operations
-  - Bugfix where Ultima Vigilis/Ithome Cluster tweak wasn't working properly (v1.4.1 for real this time!)
+  - Bugfix where Ultima Vigilis/Ithome Cluster tweak wasn't working properly
   - Bugfix where disable AI researching habitats tweak wasn't working properly
+
+A full changelog is available on GitHub (/ZolanaPrime/stellaris-small-tweaks/blob/main/changelog.txt)
 
 # Full list of available tweaks:
 
@@ -100,9 +102,7 @@ To uninstall, either reverify files on Steam; restore the old files by re-runnin
 
 Please note that you need the relevant DLC for the respective patches that require them.
 
-
 **This mod is NOT Achievement compatible.**
-
 
 # Bugs/Feedback
 
