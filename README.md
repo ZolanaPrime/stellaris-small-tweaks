@@ -2,7 +2,7 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.4.2.ps1 - for Stellaris v3.10.2 (Pyxis)
+# Latest file - zol-stellaris-tweaks-v1.4.3.ps1 - for Stellaris v3.10.4 (Pyxis)
 
 If downloaded from Steam, the file is saved in C:\Users\YOUR USERNAME\Documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\
 
