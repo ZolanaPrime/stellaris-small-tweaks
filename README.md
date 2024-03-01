@@ -22,17 +22,6 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
   - Updated for compatibility with Stellaris v3.11.x (Eridanus)
 
-# v1.4.x New Features:
-
-  - Updated for compatibility with Stellaris v3.10.x (Pyxis)
-  - Added option to pick which Precursor spawns (or disable Precursors entirely)
-  - Added option to remove diplomacy tradition being a requirement to form a federation
-  - Added Dugar system guarantee spawn option
-  - Added Larionessi Refuge system guarantee spawn option
-  - Added option to significantly reduce influence cost (by around 90%) of espionage operations
-  - Bugfix where Ultima Vigilis/Ithome Cluster tweak wasn't working properly
-  - Bugfix where disable AI researching habitats tweak wasn't working properly
-
 A full changelog is available on GitHub (/ZolanaPrime/stellaris-small-tweaks/blob/main/changelog.txt)
 
 # Full list of available tweaks:
