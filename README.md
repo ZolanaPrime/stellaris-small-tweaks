@@ -2,7 +2,7 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.4.3.ps1 - for Stellaris v3.10.4 (Pyxis)
+# Latest file - zol-stellaris-tweaks-v1.5.0.ps1 - for Stellaris v3.11.1 (Eridanus)
 
 If downloaded from Steam, the file is saved in C:\Users\YOUR USERNAME\Documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\
 
@@ -17,6 +17,10 @@ You will need to re-run the script whenever the game is updated, or to make chan
 **NB - Only available on Windows!**
 
 **Not compatible with Achievements, or other mods that edit the relevant sections of the vanilla files (full list below)!**
+
+# v1.5.x New Features:
+
+  - Updated for compatibility with Stellaris v3.11.x (Eridanus)
 
 # v1.4.x New Features:
 
