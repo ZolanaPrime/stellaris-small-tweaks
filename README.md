@@ -2,7 +2,7 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.5.0.ps1 - for Stellaris v3.11.1 (Eridanus)
+# Latest file - zol-stellaris-tweaks-v1.5.1.ps1 - for Stellaris v3.11.2 (Eridanus)
 
 If downloaded from Steam, the file is saved in C:\Users\YOUR USERNAME\Documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\
 
