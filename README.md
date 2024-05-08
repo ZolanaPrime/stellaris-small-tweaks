@@ -2,7 +2,7 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.6.0.ps1 - for Stellaris v3.12.X (Andromeda)
+# Latest file - zol-stellaris-tweaks-v1.6.0.ps1 - for Stellaris v3.12.1 (Andromeda)
 
 If downloaded from Steam, the file is saved in C:\Users\YOUR USERNAME\Documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\ or in your Steam directory Steam\steamapps\workshop\content\281990\2976945096
 
