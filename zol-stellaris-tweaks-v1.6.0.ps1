@@ -21,8 +21,8 @@ $platform = Read-Host "Please select your platform"
 Write-Host "----------------------------------------"
 
 if($platform -eq 1){
-    $stel_path = "D:\Steam Favourites\SteamApps\common\Stellaris"
-    #$stel_path = "C:\Program Files (x86)\Steam\SteamApps\common\Stellaris"
+    #$stel_path = "D:\Steam Favourites\SteamApps\common\Stellaris"
+    $stel_path = "C:\Program Files (x86)\Steam\SteamApps\common\Stellaris"
     $stel_path_check = Test-Path $stel_path
 }
 elseif($platform -eq 2){
