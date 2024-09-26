@@ -1,5 +1,13 @@
 #################################################################################
 
+Version 1.7.0
+26/09/2024
+
+ - Added support for two new Cosmic Storms precursors (Weather Manipulators (Inetian Traders); and adAkkaria Convention)
+ - Updated for v3.13.1 (Vela)
+
+#################################################################################
+
 Version 1.6.2
 31/07/2024
 
