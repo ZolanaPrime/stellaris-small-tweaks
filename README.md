@@ -2,7 +2,7 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.7.0.ps1 - for Stellaris v3.13.1 (Andromeda)
+# Latest file - zol-stellaris-tweaks-v1.8.0.ps1 - for Stellaris v3.14.15 (Circinus)
 
 If downloaded from Steam, the file is saved in C:\Users\YOUR USERNAME\Documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\ or in your Steam directory Steam\steamapps\workshop\content\281990\2976945096
 
@@ -18,10 +18,9 @@ You will need to re-run the script whenever the game is updated, or to make chan
 
 **Not compatible with Achievements, or other mods that edit the relevant sections of the vanilla files (full list below)!**
 
-# v1.7.x New Features:
+# v1.8.x New Features:
 
-  - Added support for two new Cosmic Storms precursors (Weather Manipulators (Inetian Traders); and adAkkaria Convention)
-  - Updated for compatibility with Stellaris v3.13.x (Vela)
+    - Updated for compatibility with Stellaris v3.14.x (Circinus)
 
 A full changelog is available on GitHub (/ZolanaPrime/stellaris-small-tweaks/blob/main/changelog.txt)
 

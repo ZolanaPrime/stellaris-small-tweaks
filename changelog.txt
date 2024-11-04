@@ -1,10 +1,24 @@
 #################################################################################
 
-Version 1.7.0
-26/09/2024
+Version 1.8.0
+04/11/2024
 
- - Added support for two new Cosmic Storms precursors (Weather Manipulators (Inetian Traders); and adAkkaria Convention)
- - Updated for v3.13.1 (Vela)
+  - Updated for v3.14.15 (Circinus)
+
+#################################################################################
+
+Version 1.7.1
+04/11/2024
+
+ - Bug fix in the Horizon Signal event odds code.
+ 
+#################################################################################
+
+ Version 1.7.0
+ 26/09/2024
+ 
+  - Added support for two new Cosmic Storms precursors (Weather Manipulators (Inetian Traders); and adAkkaria Convention)
+  - Updated for v3.13.1 (Vela)
 
 #################################################################################
 
