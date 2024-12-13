@@ -2,9 +2,11 @@
 
 *by Zolana*
 
-# Latest file - zol-stellaris-tweaks-v1.8.0.ps1 - for Stellaris v3.14.15 (Circinus)
+# Latest file - zol-stellaris-tweaks-v1.8.1.ps1 - for Stellaris v3.14.15926 (Circinus)
 
 If downloaded from Steam, the file is saved in C:\Users\YOUR USERNAME\Documents\Paradox Interactive\Stellaris\mod\Zolana Stellaris Tweaks\ or in your Steam directory Steam\steamapps\workshop\content\281990\2976945096
+
+You may need to enable permissions on your system to run unsigned scripts - Windows 11 blocks them by default.
 
 - This is a collection of small tweaks that you can use to adjust various parameters in your Stellaris games.
 - It consists of a PowerShell query - run it and just follow the prompts!
@@ -77,7 +79,6 @@ A full changelog is available on GitHub (/ZolanaPrime/stellaris-small-tweaks/blo
 
 ### Federations:
 
-- Remove diplomacy tradition being a requirement to form a federation
 - Disable subjects joining automatically on federation creation
     - Can tweak by Federation type
 
